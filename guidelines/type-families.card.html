@@ -1,0 +1,50 @@
+<!-- @dsCard group="Type" viewport="700x200" name="Font Families" subtitle="Heebo · Yrsa · JetBrains Mono — character specimens" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 0; background: var(--background); }
+  .row {
+    display: flex;
+    align-items: center;
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--border);
+    gap: 20px;
+  }
+  .row:last-child { border-bottom: none; }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted-foreground);
+    background: var(--muted);
+    padding: 3px 7px;
+    width: 100px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .usage { font-size: 10px; color: var(--muted-foreground); margin-left: auto; font-family: var(--font-sans); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <span class="tag">sans</span>
+    <span style="font-family:var(--font-sans);font-size:22px;font-weight:400;color:var(--foreground);letter-spacing:-0.01em;">Heebo — ABCDEFG abcdefg 0123</span>
+    <span class="usage">UI · body · labels</span>
+  </div>
+  <div class="row">
+    <span class="tag">serif</span>
+    <span style="font-family:var(--font-serif);font-size:24px;font-weight:400;color:var(--foreground);">Yrsa — ABCDEFG abcdefg 0123</span>
+    <span class="usage">Display · headings · quotes</span>
+  </div>
+  <div class="row">
+    <span class="tag">mono</span>
+    <span style="font-family:var(--font-mono);font-size:16px;font-weight:400;color:var(--foreground);">JetBrains — ABCDEFG abcdefg 0123</span>
+    <span class="usage">Code · data · IDs</span>
+  </div>
+</body>
+</html>

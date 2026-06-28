@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GCS Design System — Charts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Yrsa:wght@400&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* Brand scales */
+    --night-blue-25:  220 33% 98%;
+    --night-blue-50:  217 33% 91%;
+    --night-blue-100: 220 22% 80%;
+    --night-blue-200: 224 25% 55%;
+    --night-blue-300: 229 49% 32%;
+    --night-blue-400: 231 100% 17%;
+    --electric-blue-25:  214 100% 97%;
+    --electric-blue-50:  214 100% 92%;
+    --electric-blue-400: 214 100% 62%;
+    --star: 45 100% 60%;
+
+    /* Semantic tokens */
+    --background: 0 0% 100%;
+    --foreground: 231 100% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 231 100% 17%;
+    --muted: 220 33% 98%;
+    --muted-foreground: 215 16% 47%;
+    --border: 217 33% 91%;
+    --primary: 231 100% 17%;
+    --accent: 214 100% 62%;
+    --secondary: 214 100% 62%;
+    --ring: 214 100% 62%;
+
+    --radius: 0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: "Heebo", system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 64px 32px 96px;
+  }
+
+  /* Typography */
+  .text-h1 {
+    font-family: "Yrsa", Georgia, serif;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    margin: 0 0 16px;
+    color: hsl(var(--foreground));
+  }
+  .text-h2 {
+    font-family: "Yrsa", Georgia, serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    margin: 0 0 24px;
+    color: hsl(var(--foreground));
+  }
+  .text-body {
+    font-family: "Heebo", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;
+    color: hsl(var(--muted-foreground));
+  }
+
+  header { margin-bottom: 48px; }
+  header .text-body { max-width: 640px; margin: 0; }
+
+  section { margin-bottom: 40px; }
+
+  /* Chart card */
+  .chart-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    padding: 24px;
+    border-radius: 0;
+  }
+
+  .chart-card svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Axis & grid */
+  .axis-label {
+    font-family: "Heebo", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    fill: hsl(var(--muted-foreground));
+  }
+  .grid-line {
+    stroke: hsl(var(--border));
+    stroke-dasharray: 3 3;
+    stroke-width: 1;
+  }
+  .axis-line {
+    stroke: hsl(var(--border));
+    stroke-width: 1;
+  }
+
+  /* Pie layout */
+  .pie-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .pie-wrapper svg { max-width: 320px; }
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .legend li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: "Heebo", sans-serif;
+    font-size: 14px;
+    color: hsl(var(--foreground));
+  }
+  .legend .swatch {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+  }
+
+  /* Focus */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Hover affordance on series */
+  svg rect, svg path, svg circle { transition: opacity 160ms ease; }
+  svg rect:hover, svg path:hover, svg circle:hover { opacity: 0.8; cursor: pointer; }
+</style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1 class="text-h1">Charts</h1>
+      <p class="text-body">
+        Charts are a visual way to display data in order to highlight trends and social activity
+        that may be impacting a user's business.
+      </p>
+    </header>
+
+    <section>
+      <h2 class="text-h2">Bar Chart</h2>
+      <div class="chart-card">
+        <svg id="bar" viewBox="0 0 800 320" role="img" aria-labelledby="bar-title bar-desc">
+          <title id="bar-title">Bar chart</title>
+          <desc id="bar-desc">Monthly value and growth comparison from January to June.</desc>
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-h2">Line Chart</h2>
+      <div class="chart-card">
+        <svg id="line" viewBox="0 0 800 320" role="img" aria-labelledby="line-title line-desc">
+          <title id="line-title">Line chart</title>
+          <desc id="line-desc">Monthly value and growth trend from January to June.</desc>
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-h2">Pie Chart</h2>
+      <div class="chart-card">
+        <div class="pie-wrapper">
+          <svg id="pie" viewBox="0 0 320 320" role="img" aria-labelledby="pie-title pie-desc">
+            <title id="pie-title">Pie chart</title>
+            <desc id="pie-desc">Distribution by country: Portugal, Spain, Greece, Malta.</desc>
+          </svg>
+          <ul id="pie-legend" class="legend" aria-label="Pie chart legend"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script>
+(() => {
+  const SVG_NS = "http://www.w3.org/2000/svg";
+
+  // Tokens used as CSS color strings
+  const C = {
+    primary:        "hsl(var(--primary))",
+    accent:         "hsl(var(--accent))",
+    muted:          "hsl(var(--muted-foreground))",
+    border:         "hsl(var(--border))",
+    pie: [
+      "hsl(var(--night-blue-400))",
+      "hsl(var(--electric-blue-400))",
+      "hsl(var(--night-blue-200))",
+      "hsl(var(--electric-blue-50))",
+    ],
+  };
+
+  const data = [
+    { name: "Jan", value: 65,  growth: 28 },
+    { name: "Feb", value: 78,  growth: 35 },
+    { name: "Mar", value: 92,  growth: 42 },
+    { name: "Apr", value: 85,  growth: 48 },
+    { name: "May", value: 110, growth: 55 },
+    { name: "Jun", value: 125, growth: 62 },
+  ];
+
+  const pieData = [
+    { name: "Portugal", value: 35 },
+    { name: "Spain",    value: 28 },
+    { name: "Greece",   value: 20 },
+    { name: "Malta",    value: 17 },
+  ];
+
+  // Cartesian chart geometry (shared by Bar + Line)
+  const W = 800, H = 320;
+  const M = { top: 16, right: 16, bottom: 40, left: 48 };
+  const innerW = W - M.left - M.right;
+  const innerH = H - M.top - M.bottom;
+  const Y_MAX = 130;
+  const Y_TICKS = 5;
+
+  const el = (name, attrs = {}, children = []) => {
+    const node = document.createElementNS(SVG_NS, name);
+    for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+    for (const c of children) node.appendChild(c);
+    return node;
+  };
+  const text = (str) => document.createTextNode(str);
+  const yScale = (v) => M.top + innerH - (v / Y_MAX) * innerH;
+
+  function renderAxes(svg) {
+    // Horizontal grid + Y labels
+    for (let i = 0; i <= Y_TICKS; i++) {
+      const v = Math.round((Y_MAX / Y_TICKS) * i);
+      const y = yScale(v);
+      svg.appendChild(el("line", {
+        class: "grid-line",
+        x1: M.left, x2: M.left + innerW, y1: y, y2: y,
+      }));
+      const label = el("text", {
+        class: "axis-label",
+        x: M.left - 10, y: y + 4, "text-anchor": "end",
+      });
+      label.appendChild(text(String(v)));
+      svg.appendChild(label);
+    }
+    // X axis line
+    svg.appendChild(el("line", {
+      class: "axis-line",
+      x1: M.left, x2: M.left + innerW,
+      y1: M.top + innerH, y2: M.top + innerH,
+    }));
+    // X labels
+    const band = innerW / data.length;
+    data.forEach((d, i) => {
+      const cx = M.left + band * i + band / 2;
+      const t = el("text", {
+        class: "axis-label",
+        x: cx, y: M.top + innerH + 20, "text-anchor": "middle",
+      });
+      t.appendChild(text(d.name));
+      svg.appendChild(t);
+    });
+  }
+
+  function renderBar() {
+    const svg = document.getElementById("bar");
+    renderAxes(svg);
+
+    const band = innerW / data.length;
+    const gap = 6;
+    const groupPadding = 14;
+    const barW = (band - groupPadding * 2 - gap) / 2;
+
+    data.forEach((d, i) => {
+      const groupX = M.left + band * i + groupPadding;
+
+      // value bar
+      const vY = yScale(d.value);
+      const vRect = el("rect", {
+        x: groupX, y: vY, width: barW, height: M.top + innerH - vY,
+        fill: C.primary,
+      }, [el("title", {}, [text(`${d.name} · Value: ${d.value}`)])]);
+      svg.appendChild(vRect);
+
+      // growth bar
+      const gY = yScale(d.growth);
+      const gRect = el("rect", {
+        x: groupX + barW + gap, y: gY, width: barW, height: M.top + innerH - gY,
+        fill: C.accent,
+      }, [el("title", {}, [text(`${d.name} · Growth: ${d.growth}`)])]);
+      svg.appendChild(gRect);
+    });
+  }
+
+  function renderLine() {
+    const svg = document.getElementById("line");
+    renderAxes(svg);
+
+    const band = innerW / data.length;
+    const px = (i) => M.left + band * i + band / 2;
+
+    const series = [
+      { key: "value",  color: C.primary, label: "Value" },
+      { key: "growth", color: C.accent,  label: "Growth" },
+    ];
+
+    series.forEach(s => {
+      const pts = data.map((d, i) => `${px(i)},${yScale(d[s.key])}`).join(" ");
+      svg.appendChild(el("polyline", {
+        points: pts,
+        fill: "none",
+        stroke: s.color,
+        "stroke-width": 2,
+        "stroke-linejoin": "round",
+        "stroke-linecap": "round",
+      }));
+      data.forEach((d, i) => {
+        const c = el("circle", {
+          cx: px(i), cy: yScale(d[s.key]), r: 4,
+          fill: s.color,
+        }, [el("title", {}, [text(`${d.name} · ${s.label}: ${d[s.key]}`)])]);
+        svg.appendChild(c);
+      });
+    });
+  }
+
+  function renderPie() {
+    const svg = document.getElementById("pie");
+    const cx = 160, cy = 160, r = 120;
+    const total = pieData.reduce((s, d) => s + d.value, 0);
+
+    let angle = -Math.PI / 2; // start at top
+    pieData.forEach((d, i) => {
+      const slice = (d.value / total) * Math.PI * 2;
+      const a2 = angle + slice;
+      const x1 = cx + r * Math.cos(angle);
+      const y1 = cy + r * Math.sin(angle);
+      const x2 = cx + r * Math.cos(a2);
+      const y2 = cy + r * Math.sin(a2);
+      const largeArc = slice > Math.PI ? 1 : 0;
+
+      const pct = ((d.value / total) * 100).toFixed(0);
+      const path = el("path", {
+        d: `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`,
+        fill: C.pie[i % C.pie.length],
+        stroke: "hsl(var(--background))",
+        "stroke-width": 1,
+      }, [el("title", {}, [text(`${d.name}: ${d.value} (${pct}%)`)])]);
+      svg.appendChild(path);
+
+      angle = a2;
+    });
+
+    // Legend
+    const legend = document.getElementById("pie-legend");
+    pieData.forEach((d, i) => {
+      const pct = ((d.value / total) * 100).toFixed(0);
+      const li = document.createElement("li");
+      const sw = document.createElement("span");
+      sw.className = "swatch";
+      sw.style.background = C.pie[i % C.pie.length];
+      const label = document.createElement("span");
+      label.textContent = `${d.name} · ${pct}%`;
+      li.appendChild(sw);
+      li.appendChild(label);
+      legend.appendChild(li);
+    });
+  }
+
+  renderBar();
+  renderLine();
+  renderPie();
+})();
+</script>
+</body>
+</html>

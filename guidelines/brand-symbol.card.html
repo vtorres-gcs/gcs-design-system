@@ -1,0 +1,39 @@
+<!-- @dsCard group="Brand" viewport="700x160" name="Symbol" subtitle="GCS starburst symbol — standalone usage" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-sans); }
+  .row { display: flex; height: 160px; }
+  .cell {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+  }
+  .cell img { height: 64px; width: 64px; object-fit: contain; }
+  .tag { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.5; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="cell" style="background:#F5F7FA; border-right:1px solid var(--border);">
+    <img src="../assets/logos/GCS-Symbol-Blue.svg" alt="GCS Symbol Blue">
+    <span class="tag" style="color:#000957;">On light</span>
+  </div>
+  <div class="cell" style="background:hsl(233 100% 17%); border-right:1px solid hsl(233 60% 24%);">
+    <img src="../assets/logos/GCS-Symbol-White.svg" alt="GCS Symbol White">
+    <span class="tag" style="color:#fff;">On navy</span>
+  </div>
+  <div class="cell" style="background:#000;">
+    <img src="../assets/logos/GCS-Symbol-White.svg" alt="GCS Symbol White on Black">
+    <span class="tag" style="color:#fff;">On black</span>
+  </div>
+  <div class="cell" style="background:hsl(216 100% 62%); border-left:1px solid hsl(216 100% 50%);">
+    <img src="../assets/logos/GCS-Symbol-White.svg" alt="GCS Symbol on Blue">
+    <span class="tag" style="color:#fff;">On accent</span>
+  </div>
+</div>
+</body>
+</html>

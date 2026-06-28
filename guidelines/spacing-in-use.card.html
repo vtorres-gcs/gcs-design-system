@@ -1,0 +1,59 @@
+<!-- @dsCard group="Spacing" viewport="700x200" name="Spacing in Use" subtitle="Component padding and gap in context" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); font-family: var(--font-sans); }
+  .demos { display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+  .demo { display: flex; flex-direction: column; gap: 8px; }
+  .label { font-size: 10px; font-family: var(--font-mono); color: var(--muted-foreground); text-transform: uppercase; letter-spacing: 0.05em; }
+  .btn-demo {
+    background: var(--primary); color: #fff;
+    font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+    border: none; cursor: default; display: inline-flex; align-items: center;
+    white-space: nowrap;
+  }
+  .card-demo {
+    background: var(--card);
+    border: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--foreground);
+  }
+  .input-demo {
+    background: var(--card);
+    border: 1px solid var(--border);
+    font-family: var(--font-sans); font-size: 14px; color: var(--foreground);
+    outline: none;
+  }
+</style>
+</head>
+<body>
+<div class="demos">
+  <div class="demo">
+    <span class="label">btn-sm · 0 12px · h32</span>
+    <button class="btn-demo" style="padding:0 12px;height:32px;font-size:13px;">Action</button>
+  </div>
+  <div class="demo">
+    <span class="label">btn-md · 0 16px · h40</span>
+    <button class="btn-demo" style="padding:0 16px;height:40px;font-size:14px;">Action</button>
+  </div>
+  <div class="demo">
+    <span class="label">btn-lg · 0 24px · h48</span>
+    <button class="btn-demo" style="padding:0 24px;height:48px;font-size:16px;">Action</button>
+  </div>
+  <div class="demo">
+    <span class="label">card · 24px padding</span>
+    <div class="card-demo" style="padding:24px;width:160px;">
+      <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Card Title</div>
+      <div style="font-size:12px;color:var(--muted-foreground);">Content goes here</div>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="label">input · 12px 16px</span>
+    <input class="input-demo" style="padding:12px 16px;width:180px;" placeholder="Enter value…" readonly>
+  </div>
+</div>
+</body>
+</html>

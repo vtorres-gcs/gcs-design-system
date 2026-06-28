@@ -1,0 +1,597 @@
+<!-- @startingPoint section="UI Kits" subtitle="GCS client portal — application management dashboard" viewport="1280x720" -->
+<!-- @dsCard group="Client Portal" viewport="1280x720" name="Client Portal" subtitle="Application management — dashboard, applications, documents" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root { height: 100%; }
+  body { font-family: var(--font-sans); background: var(--background); color: var(--foreground); }
+  @keyframes gcs-spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+/* ── Inline primitives (self-contained, no bundle needed) ── */
+function Button({ variant='primary', size='md', disabled=false, loading=false,
+  iconLeft, iconRight, fullWidth=false, type='button', onClick, children, style:sp={}, ...rest }) {
+  const [h, sH] = React.useState(false);
+  const dis = disabled || loading;
+  const V = {
+    primary:     { bg: h ? 'hsl(233 60% 26%)' : 'hsl(233 100% 17%)', color: '#fff',              border: 'none' },
+    secondary:   { bg: h ? 'hsl(216 100% 55%)' : 'hsl(216 100% 62%)', color: '#fff',             border: 'none' },
+    ghost:       { bg: h ? 'hsl(218 21% 93%)'  : 'transparent',        color: 'hsl(233 100% 17%)', border: 'none' },
+    outline:     { bg: h ? 'hsl(218 21% 93%)'  : 'transparent',        color: 'hsl(220 43% 11%)', border: '1px solid hsl(216 100% 93%)' },
+    destructive: { bg: h ? 'hsl(0 84% 50%)'    : 'hsl(0 84% 60%)',     color: '#fff',              border: 'none' },
+  }[variant] || {};
+  const S = { sm: { h: '32px', p: '0 12px', fs: '13px' }, md: { h: '40px', p: '0 16px', fs: '14px' }, lg: { h: '48px', p: '0 24px', fs: '16px' } }[size] || {};
+  return (
+    <button type={type} disabled={dis}
+      onClick={!dis ? onClick : undefined}
+      onMouseEnter={() => sH(true)} onMouseLeave={() => sH(false)}
+      style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+        fontFamily: 'var(--font-sans)', fontSize: S.fs, fontWeight: 500, height: S.h, padding: S.p,
+        background: V.bg, color: V.color, border: V.border, borderRadius: 0,
+        cursor: dis ? 'not-allowed' : 'pointer', opacity: dis ? 0.5 : 1,
+        transition: 'background 150ms', whiteSpace: 'nowrap', userSelect: 'none',
+        width: fullWidth ? '100%' : 'auto', outline: 'none', ...sp }} {...rest}>
+      {loading && <svg width="14" height="14" viewBox="0 0 14 14" style={{ animation: 'gcs-spin .75s linear infinite', flexShrink: 0 }}>
+        <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="2" fill="none" strokeDasharray="20" strokeDashoffset="6" strokeLinecap="round" /></svg>}
+      {!loading && iconLeft && <span style={{ display: 'flex', alignItems: 'center' }}>{iconLeft}</span>}
+      {children}
+      {iconRight && <span style={{ display: 'flex', alignItems: 'center' }}>{iconRight}</span>}
+    </button>
+  );
+}
+
+function Badge({ variant='default', size='md', dot=false, children, style:sp={} }) {
+  const V = {
+    default:     { bg: 'hsl(218 21% 93%)', color: 'hsl(221 13% 46%)' },
+    primary:     { bg: 'hsl(233 100% 17%)', color: '#fff' },
+    secondary:   { bg: 'hsl(216 100% 93%)', color: 'hsl(216 100% 35%)' },
+    success:     { bg: 'hsl(142 71% 90%)',  color: 'hsl(142 71% 22%)' },
+    warning:     { bg: 'hsl(38 92% 90%)',   color: 'hsl(38 60% 28%)' },
+    destructive: { bg: 'hsl(0 84% 94%)',    color: 'hsl(0 72% 38%)' },
+    outline:     { bg: 'transparent', color: 'hsl(220 43% 11%)', border: '1px solid hsl(216 100% 93%)' },
+  }[variant] || {};
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px',
+      fontFamily: 'var(--font-sans)', fontSize: size === 'sm' ? '11px' : '12px', fontWeight: 500,
+      letterSpacing: '0.02em', lineHeight: 1.4, padding: size === 'sm' ? '2px 7px' : '3px 10px',
+      background: V.bg, color: V.color, border: V.border || 'none',
+      borderRadius: '9999px', whiteSpace: 'nowrap', ...sp }}>
+      {dot && <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'currentColor', flexShrink: 0, opacity: 0.75 }} />}
+      {children}
+    </span>
+  );
+}
+
+function Tag({ children, variant='default', size='md', dismissible=false, onDismiss, icon, style:sp={} }) {
+  const [dh, sDh] = React.useState(false);
+  const V = {
+    default: { bg: 'hsl(218 21% 93%)', color: 'hsl(220 43% 11%)' },
+    primary: { bg: 'hsl(215 100% 96%)', color: 'hsl(216 100% 35%)', border: '1px solid hsl(216 100% 93%)' },
+    outline: { bg: 'transparent',        color: 'hsl(220 43% 11%)', border: '1px solid hsl(216 100% 93%)' },
+    filled:  { bg: 'hsl(233 100% 17%)', color: '#fff' },
+    success: { bg: 'hsl(142 71% 90%)',  color: 'hsl(142 71% 22%)' },
+    warning: { bg: 'hsl(38 92% 90%)',   color: 'hsl(38 60% 28%)' },
+  }[variant] || {};
+  const sm = size === 'sm';
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px',
+      fontFamily: 'var(--font-sans)', fontSize: sm ? '11px' : '13px', fontWeight: 400,
+      lineHeight: 1.4, padding: sm ? '2px 8px' : '4px 10px',
+      background: V.bg, color: V.color, border: V.border || 'none', borderRadius: 0,
+      whiteSpace: 'nowrap', ...sp }}>
+      {icon && <span style={{ display: 'flex', alignItems: 'center', opacity: 0.7 }}>{icon}</span>}
+      {children}
+      {dismissible && <button type="button" onClick={onDismiss}
+        onMouseEnter={() => sDh(true)} onMouseLeave={() => sDh(false)}
+        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          width: '14px', height: '14px', marginLeft: '2px', borderRadius: '50%', cursor: 'pointer',
+          background: dh ? 'currentColor' : 'transparent', color: dh ? V.bg : 'currentColor',
+          opacity: dh ? 1 : 0.5, border: 'none', padding: 0, fontFamily: 'inherit',
+          fontSize: '12px', lineHeight: 1 }}>×</button>}
+    </span>
+  );
+}
+
+function Avatar({ src, name, size='md', shape='circle', style:sp={} }) {
+  const [err, sErr] = React.useState(false);
+  const S = { xs:{s:'24px',fs:'9px'}, sm:{s:'32px',fs:'12px'}, md:{s:'40px',fs:'14px'}, lg:{s:'48px',fs:'16px'}, xl:{s:'64px',fs:'20px'} }[size] || { s:'40px', fs:'14px' };
+  const COLS = ['hsl(233 100% 17%)', 'hsl(216 100% 35%)', 'hsl(233 41% 34%)', 'hsl(216 100% 45%)', 'hsl(233 60% 26%)'];
+  let h = 0;
+  for (let i = 0; i < (name || '').length; i++) h = ((h << 5) - h + (name || '').charCodeAt(i)) | 0;
+  const bg = COLS[Math.abs(h) % COLS.length];
+  const parts = (name || '?').trim().split(/\s+/);
+  const ini = parts.length > 1 ? (parts[0][0] + parts[parts.length-1][0]).toUpperCase() : (name || '?')[0].toUpperCase();
+  return (
+    <div style={{ width: S.s, height: S.s, borderRadius: shape === 'circle' ? '9999px' : '0',
+      background: bg, color: '#fff', display: 'inline-flex', alignItems: 'center',
+      justifyContent: 'center', fontFamily: 'var(--font-sans)', fontSize: S.fs,
+      fontWeight: 600, letterSpacing: '0.03em', overflow: 'hidden', flexShrink: 0,
+      userSelect: 'none', ...sp }} title={name}>
+      {src && !err
+        ? <img src={src} alt={name || 'avatar'} onError={() => sErr(true)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        : <span>{ini}</span>}
+    </div>
+  );
+}
+
+/* ── Inline SVG icons ─────────────────────────────────── */
+const Icon = ({ d, size = 16, stroke = 'currentColor' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d={d} />
+  </svg>
+);
+const Icons = {
+  dashboard: "M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z M9 22V12h6v10",
+  apps: "M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8",
+  docs: "M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z",
+  globe: "M12 2a10 10 0 100 20A10 10 0 0012 2z M2 12h20 M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z",
+  calendar: "M3 4h18v18H3z M16 2v4 M8 2v4 M3 10h18",
+  settings: "M12 15a3 3 0 100-6 3 3 0 000 6z M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z",
+  bell: "M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9 M13.73 21a2 2 0 01-3.46 0",
+  search: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
+  check: "M20 6L9 17l-5-5",
+  clock: "M12 22a10 10 0 100-20 10 10 0 000 20z M12 6v6l4 2",
+  alert: "M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z M12 9v4 M12 17h.01",
+  upload: "M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4 M17 8l-5-5-5 5 M12 3v12",
+  chevron: "M9 18l6-6-6-6",
+  logout: "M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4 M16 17l5-5-5-5 M21 12H9",
+};
+
+/* ── Mock data ───────────────────────────────────────── */
+const USER = { name: 'James Martin', email: 'james.martin@example.com', ref: 'GCS-CLT-004821' };
+
+const APPLICATIONS = [
+  { id: 'APP-2024-PT-00312', programme: 'Portugal Golden Visa', country: 'PT', status: 'under-review',   submitted: '15 Jan 2024', advisor: 'Sofia Almeida',  nextAction: 'Awaiting biometrics appointment', progress: 55 },
+  { id: 'APP-2024-GR-00847', programme: 'Greek Golden Visa',    country: 'GR', status: 'docs-required',  submitted: '3 Mar 2024',  advisor: 'Nikos Papadopoulos', nextAction: 'Upload bank statements (3 months)', progress: 30 },
+  { id: 'APP-2023-MT-00188', programme: 'Malta MPRP',           country: 'MT', status: 'approved',       submitted: '7 Sep 2023',  advisor: 'Claire Borg',    nextAction: 'Collect residence card', progress: 100 },
+];
+
+const DOCUMENTS = [
+  { name: 'Passport (Main Applicant)', app: 'Portugal Golden Visa', status: 'verified',  uploaded: '16 Jan 2024' },
+  { name: 'Proof of Investment',       app: 'Portugal Golden Visa', status: 'pending',   uploaded: '20 Jan 2024' },
+  { name: 'Bank Statements (3 months)', app: 'Greek Golden Visa',   status: 'required',  uploaded: null },
+  { name: 'Police Clearance Certificate', app: 'Greek Golden Visa', status: 'required',  uploaded: null },
+  { name: 'Marriage Certificate',      app: 'Greek Golden Visa',    status: 'uploaded',  uploaded: '10 Mar 2024' },
+  { name: 'Property Title Deed',       app: 'Malta MPRP',           status: 'verified',  uploaded: '8 Sep 2023' },
+];
+
+const CONSULTATIONS = [
+  { title: 'Programme Review — Portugal', advisor: 'Sofia Almeida', date: '28 Jun 2024', time: '14:00 BST', type: 'Video Call' },
+  { title: 'Document Review — Greece',    advisor: 'Nikos Papadopoulos', date: '5 Jul 2024', time: '10:00 BST', type: 'Video Call' },
+];
+
+/* ── Status helpers ─────────────────────────────────── */
+function StatusBadge({ status }) {
+  const map = {
+    'approved':      { v: 'success',     label: 'Approved' },
+    'under-review':  { v: 'warning',     label: 'Under Review' },
+    'docs-required': { v: 'destructive', label: 'Documents Required' },
+    'verified':      { v: 'success',     label: 'Verified' },
+    'pending':       { v: 'warning',     label: 'Pending Review' },
+    'uploaded':      { v: 'secondary',   label: 'Uploaded' },
+    'required':      { v: 'destructive', label: 'Required' },
+  };
+  const { v, label } = map[status] || { v: 'default', label: status };
+  return <Badge variant={v} dot>{label}</Badge>;
+}
+
+function ProgressBar({ value }) {
+  return (
+    <div style={{ height: '4px', background: 'var(--muted)', width: '100%' }}>
+      <div style={{
+        height: '100%', width: `${value}%`,
+        background: value === 100 ? 'var(--success)' : 'var(--secondary)',
+        transition: 'width 0.3s ease',
+      }} />
+    </div>
+  );
+}
+
+/* ── Sidebar ─────────────────────────────────────────── */
+const NAV = [
+  { id: 'dashboard',    label: 'Dashboard',         icon: 'dashboard' },
+  { id: 'applications', label: 'My Applications',   icon: 'apps' },
+  { id: 'documents',    label: 'Documents',          icon: 'docs' },
+  { id: 'programmes',   label: 'Programmes',         icon: 'globe' },
+  { id: 'consultations',label: 'Consultations',      icon: 'calendar' },
+];
+
+function Sidebar({ page, setPage }) {
+  return (
+    <div style={{
+      width: '240px', flexShrink: 0, height: '100vh',
+      background: 'var(--sidebar-background)',
+      display: 'flex', flexDirection: 'column',
+      position: 'sticky', top: 0,
+    }}>
+      {/* Logo */}
+      <div style={{ padding: '24px 20px 20px', borderBottom: '1px solid hsl(233 50% 24%)' }}>
+        <img src="../../assets/logos/GCS-Primary-White.svg" alt="Global Citizen Solutions"
+          style={{ height: '40px', maxWidth: '180px', objectFit: 'contain' }} />
+      </div>
+
+      {/* Nav items */}
+      <nav style={{ flex: 1, padding: '12px 0', overflow: 'auto' }}>
+        {NAV.map(item => {
+          const active = page === item.id;
+          return (
+            <button key={item.id} onClick={() => setPage(item.id)} style={{
+              display: 'flex', alignItems: 'center', gap: '10px',
+              width: '100%', padding: '10px 20px',
+              background: active ? 'hsl(233 60% 24%)' : 'transparent',
+              color: active ? '#fff' : 'hsl(0 0% 80%)',
+              border: 'none', cursor: 'pointer', textAlign: 'left',
+              fontFamily: 'var(--font-sans)', fontSize: '14px', fontWeight: active ? 500 : 400,
+              borderLeft: active ? '2px solid var(--electric-blue-400)' : '2px solid transparent',
+              transition: 'all 120ms ease',
+            }}>
+              <span style={{ opacity: active ? 1 : 0.7, flexShrink: 0 }}>
+                <Icon d={Icons[item.icon]} size={16} />
+              </span>
+              {item.label}
+            </button>
+          );
+        })}
+      </nav>
+
+      {/* User section */}
+      <div style={{ padding: '16px 20px', borderTop: '1px solid hsl(233 50% 24%)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+          <Avatar name={USER.name} size="sm" />
+          <div>
+            <div style={{ fontSize: '13px', fontWeight: 500, color: '#fff' }}>{USER.name}</div>
+            <div style={{ fontSize: '11px', color: 'hsl(0 0% 60%)', fontFamily: 'var(--font-mono)' }}>{USER.ref}</div>
+          </div>
+        </div>
+        <button style={{
+          display: 'flex', alignItems: 'center', gap: '8px',
+          background: 'transparent', border: 'none', cursor: 'pointer',
+          color: 'hsl(0 0% 60%)', fontSize: '13px', fontFamily: 'var(--font-sans)',
+          padding: '4px 0', width: '100%',
+        }}>
+          <Icon d={Icons.logout} size={14} />
+          Sign Out
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ── Header ─────────────────────────────────────────── */
+function Header({ page, setPage }) {
+  const titles = {
+    dashboard: 'Dashboard', applications: 'My Applications',
+    documents: 'Documents', programmes: 'Programmes', consultations: 'Consultations',
+  };
+  const [searchFocused, setSearchFocused] = React.useState(false);
+  return (
+    <div style={{
+      height: '64px', background: 'var(--card)', borderBottom: '1px solid var(--border)',
+      display: 'flex', alignItems: 'center', padding: '0 32px', gap: '16px', flexShrink: 0,
+    }}>
+      <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 400, flex: 1, color: 'var(--foreground)' }}>
+        {titles[page]}
+      </h1>
+      {/* Search */}
+      <div style={{ position: 'relative' }}>
+        <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: 'var(--muted-foreground)', display: 'flex' }}>
+          <Icon d={Icons.search} size={14} />
+        </span>
+        <input
+          placeholder="Search…"
+          onFocus={() => setSearchFocused(true)}
+          onBlur={() => setSearchFocused(false)}
+          style={{
+            fontFamily: 'var(--font-sans)', fontSize: '13px',
+            background: 'var(--background)', border: `1px solid ${searchFocused ? 'var(--primary)' : 'var(--border)'}`,
+            height: '36px', padding: '0 12px 0 32px', width: '200px',
+            outline: 'none', color: 'var(--foreground)',
+            boxShadow: searchFocused ? 'var(--shadow-focus)' : 'none',
+            transition: 'border-color 150ms, box-shadow 150ms',
+          }}
+        />
+      </div>
+      {/* Notifications */}
+      <button style={{
+        position: 'relative', background: 'transparent', border: 'none', cursor: 'pointer',
+        color: 'var(--muted-foreground)', display: 'flex', padding: '8px',
+      }}>
+        <Icon d={Icons.bell} size={18} />
+        <span style={{
+          position: 'absolute', top: '6px', right: '6px', width: '7px', height: '7px',
+          background: 'var(--destructive)', borderRadius: '50%', border: '1.5px solid var(--card)',
+        }} />
+      </button>
+      <Avatar name={USER.name} size="sm" />
+    </div>
+  );
+}
+
+/* ── Dashboard ──────────────────────────────────────── */
+function StatCard({ label, value, sub, icon, accent }) {
+  return (
+    <div style={{
+      background: 'var(--card)', border: '1px solid var(--border)',
+      padding: '20px 24px', flex: 1,
+    }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+        <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--muted-foreground)' }}>{label}</span>
+        <span style={{ color: accent || 'var(--primary)', opacity: 0.6 }}><Icon d={Icons[icon]} size={18} /></span>
+      </div>
+      <div style={{ fontFamily: 'var(--font-serif)', fontSize: '36px', fontWeight: 400, color: 'var(--foreground)', lineHeight: 1 }}>{value}</div>
+      {sub && <div style={{ fontSize: '12px', color: 'var(--muted-foreground)', marginTop: '6px' }}>{sub}</div>}
+    </div>
+  );
+}
+
+function Dashboard({ setPage }) {
+  const actionRequired = APPLICATIONS.filter(a => a.status === 'docs-required');
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+      {/* Welcome */}
+      <div>
+        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', fontWeight: 400, marginBottom: '4px' }}>
+          Welcome back, {USER.name.split(' ')[0]}.
+        </h2>
+        <p style={{ fontSize: '14px', color: 'var(--muted-foreground)' }}>
+          You have {actionRequired.length} application{actionRequired.length !== 1 ? 's' : ''} requiring attention.
+        </p>
+      </div>
+
+      {/* Stats */}
+      <div style={{ display: 'flex', gap: '16px' }}>
+        <StatCard label="Active Applications" value={2} sub="1 under review · 1 action needed" icon="apps" />
+        <StatCard label="Documents Required" value={2} sub="Greek Golden Visa" icon="docs" accent="var(--destructive)" />
+        <StatCard label="Next Consultation" value="28 Jun" sub="Portugal Review · 14:00 BST" icon="calendar" accent="var(--secondary)" />
+        <StatCard label="Approved" value={1} sub="Malta MPRP — Sep 2023" icon="check" accent="var(--success)" />
+      </div>
+
+      {/* Action required */}
+      {actionRequired.length > 0 && (
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+            <span style={{ color: 'var(--destructive)' }}><Icon d={Icons.alert} size={16} /></span>
+            <span style={{ fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--muted-foreground)' }}>Action Required</span>
+          </div>
+          {actionRequired.map(app => (
+            <div key={app.id} style={{
+              background: 'hsl(0 84% 98%)', border: '1px solid hsl(0 84% 88%)',
+              padding: '16px 20px', marginBottom: '8px',
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px',
+            }}>
+              <div>
+                <div style={{ fontSize: '14px', fontWeight: 500, marginBottom: '3px' }}>{app.programme}</div>
+                <div style={{ fontSize: '13px', color: 'hsl(0 72% 38%)' }}>{app.nextAction}</div>
+              </div>
+              <Button variant="primary" size="sm" onClick={() => setPage('documents')}>
+                Upload Documents
+              </Button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Recent applications */}
+      <div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+          <span style={{ fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--muted-foreground)' }}>Applications</span>
+          <button onClick={() => setPage('applications')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--secondary)', fontSize: '13px', fontFamily: 'var(--font-sans)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+            View All <Icon d={Icons.chevron} size={14} />
+          </button>
+        </div>
+        <div style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
+          {APPLICATIONS.map((app, i) => (
+            <div key={app.id} style={{
+              display: 'grid', gridTemplateColumns: '2fr 1fr 120px 1fr',
+              alignItems: 'center', gap: '16px', padding: '14px 20px',
+              borderBottom: i < APPLICATIONS.length - 1 ? '1px solid var(--border)' : 'none',
+            }}>
+              <div>
+                <div style={{ fontSize: '14px', fontWeight: 500 }}>{app.programme}</div>
+                <div style={{ fontSize: '11px', color: 'var(--muted-foreground)', fontFamily: 'var(--font-mono)', marginTop: '2px' }}>{app.id}</div>
+              </div>
+              <StatusBadge status={app.status} />
+              <div>
+                <ProgressBar value={app.progress} />
+                <div style={{ fontSize: '11px', color: 'var(--muted-foreground)', marginTop: '4px' }}>{app.progress}% complete</div>
+              </div>
+              <div style={{ fontSize: '12px', color: 'var(--muted-foreground)' }}>
+                Advisor: {app.advisor.split(' ')[0]}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Applications page ──────────────────────────────── */
+function ApplicationsPage({ setPage }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <p style={{ fontSize: '14px', color: 'var(--muted-foreground)' }}>3 applications across 3 programmes</p>
+        <Button variant="primary" size="sm">New Application</Button>
+      </div>
+      {APPLICATIONS.map(app => (
+        <div key={app.id} style={{ background: 'var(--card)', border: '1px solid var(--border)', padding: '24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '6px' }}>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '20px', fontWeight: 400 }}>{app.programme}</h3>
+                <StatusBadge status={app.status} />
+              </div>
+              <div style={{ fontSize: '12px', color: 'var(--muted-foreground)', fontFamily: 'var(--font-mono)' }}>{app.id}</div>
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <div style={{ fontSize: '12px', color: 'var(--muted-foreground)' }}>Submitted {app.submitted}</div>
+              <div style={{ fontSize: '12px', color: 'var(--muted-foreground)', marginTop: '2px' }}>Advisor: {app.advisor}</div>
+            </div>
+          </div>
+          <div style={{ marginBottom: '12px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
+              <span style={{ fontSize: '12px', color: 'var(--muted-foreground)' }}>Progress</span>
+              <span style={{ fontSize: '12px', fontWeight: 500 }}>{app.progress}%</span>
+            </div>
+            <ProgressBar value={app.progress} />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '12px', borderTop: '1px solid var(--border)' }}>
+            <div style={{ fontSize: '13px', color: app.status === 'docs-required' ? 'hsl(0 72% 38%)' : 'var(--muted-foreground)' }}>
+              {app.status === 'docs-required' && <span style={{ marginRight: '6px' }}>⚠</span>}
+              Next: {app.nextAction}
+            </div>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              {app.status === 'docs-required' && (
+                <Button variant="primary" size="sm" onClick={() => setPage('documents')}>Upload Documents</Button>
+              )}
+              <Button variant="outline" size="sm">View Details</Button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Documents page ─────────────────────────────────── */
+function DocumentsPage() {
+  const byApp = APPLICATIONS.reduce((acc, a) => { acc[a.programme] = []; return acc; }, {});
+  DOCUMENTS.forEach(d => { if (byApp[d.app]) byApp[d.app].push(d); });
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      {Object.entries(byApp).map(([appName, docs]) => (
+        <div key={appName}>
+          <div style={{ fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--muted-foreground)', marginBottom: '10px' }}>{appName}</div>
+          <div style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
+            {docs.length === 0 ? (
+              <div style={{ padding: '16px 20px', fontSize: '13px', color: 'var(--muted-foreground)', fontStyle: 'italic' }}>No documents required</div>
+            ) : docs.map((doc, i) => (
+              <div key={doc.name} style={{
+                display: 'flex', alignItems: 'center', gap: '16px', padding: '14px 20px',
+                borderBottom: i < docs.length - 1 ? '1px solid var(--border)' : 'none',
+              }}>
+                <span style={{ color: doc.status === 'verified' ? 'var(--success)' : doc.status === 'required' ? 'var(--destructive)' : 'var(--muted-foreground)' }}>
+                  <Icon d={doc.status === 'required' ? Icons.alert : Icons.docs} size={16} />
+                </span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '14px', fontWeight: 400 }}>{doc.name}</div>
+                  {doc.uploaded && <div style={{ fontSize: '11px', color: 'var(--muted-foreground)', marginTop: '2px' }}>Uploaded {doc.uploaded}</div>}
+                </div>
+                <StatusBadge status={doc.status} />
+                {doc.status === 'required' && (
+                  <Button variant="primary" size="sm">
+                    <Icon d={Icons.upload} size={14} /> Upload
+                  </Button>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Consultations page ─────────────────────────────── */
+function ConsultationsPage() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button variant="primary" size="sm">Book a Consultation</Button>
+      </div>
+      {CONSULTATIONS.map(c => (
+        <div key={c.title} style={{ background: 'var(--card)', border: '1px solid var(--border)', padding: '20px 24px', display: 'flex', gap: '20px', alignItems: 'center' }}>
+          <div style={{ width: '52px', height: '52px', background: 'var(--electric-blue-25)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--secondary)', flexShrink: 0 }}>
+            <Icon d={Icons.calendar} size={24} />
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: '15px', fontWeight: 500, marginBottom: '4px' }}>{c.title}</div>
+            <div style={{ fontSize: '13px', color: 'var(--muted-foreground)' }}>with {c.advisor} · {c.date} · {c.time} · {c.type}</div>
+          </div>
+          <Tag variant="primary">{c.type}</Tag>
+          <Button variant="outline" size="sm">Join Call</Button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Programmes page ─────────────────────────────────── */
+const PROGRAMMES = [
+  { name: 'Portugal Golden Visa', region: 'Europe', type: 'Residency', min: '€250,000', time: '6–8 months', popular: true },
+  { name: 'Greek Golden Visa', region: 'Europe', type: 'Residency', min: '€250,000', time: '3–6 months', popular: true },
+  { name: 'Malta CBI', region: 'Europe', type: 'Citizenship', min: '€600,000+', time: '12–14 months', popular: false },
+  { name: 'St Kitts & Nevis CBI', region: 'Caribbean', type: 'Citizenship', min: '$150,000+', time: '3–6 months', popular: false },
+];
+
+function ProgrammesPage() {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+      {PROGRAMMES.map(p => (
+        <div key={p.name} style={{ background: 'var(--card)', border: '1px solid var(--border)', padding: '20px 24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '18px', fontWeight: 400 }}>{p.name}</h3>
+            {p.popular && <Badge variant="primary" size="sm">Popular</Badge>}
+          </div>
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+            <Tag variant="outline" size="sm">{p.region}</Tag>
+            <Tag variant={p.type === 'Citizenship' ? 'filled' : 'primary'} size="sm">{p.type}</Tag>
+          </div>
+          <div style={{ display: 'flex', gap: '24px', marginBottom: '16px' }}>
+            <div><div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--muted-foreground)', marginBottom: '2px' }}>Min. Investment</div><div style={{ fontSize: '14px', fontWeight: 500 }}>{p.min}</div></div>
+            <div><div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--muted-foreground)', marginBottom: '2px' }}>Processing Time</div><div style={{ fontSize: '14px', fontWeight: 500 }}>{p.time}</div></div>
+          </div>
+          <div style={{ display: 'flex', gap: '8px', paddingTop: '12px', borderTop: '1px solid var(--border)' }}>
+            <Button variant="primary" size="sm" fullWidth>Start Application</Button>
+            <Button variant="ghost" size="sm">Details</Button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── App ──────────────────────────────────────────────── */
+function App() {
+  const [page, setPage] = React.useState('dashboard');
+
+  const pages = {
+    dashboard:    <Dashboard setPage={setPage} />,
+    applications: <ApplicationsPage setPage={setPage} />,
+    documents:    <DocumentsPage />,
+    programmes:   <ProgrammesPage />,
+    consultations:<ConsultationsPage />,
+  };
+
+  return (
+    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
+      <Sidebar page={page} setPage={setPage} />
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <Header page={page} setPage={setPage} />
+        <main style={{ flex: 1, overflow: 'auto', padding: '32px 40px', background: 'var(--background)' }}>
+          {pages[page]}
+        </main>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

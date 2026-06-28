@@ -1,0 +1,49 @@
+<!-- @dsCard group="Colors" viewport="700x120" name="Sidebar Palette" subtitle="Night Blue sidebar surface tokens" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 0; font-family: var(--font-sans); }
+  .bar { display: flex; height: 80px; }
+  .cell {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8px 12px;
+  }
+  .label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1px; }
+  .meta { padding: 10px 12px; background: var(--background); display: flex; gap: 20px; }
+  .meta span { font-size: 11px; color: var(--muted-foreground); }
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="cell" style="background:var(--sidebar-background);color:#fff;">
+    <span class="label">background</span>
+    <span style="font-size:10px;font-family:var(--font-mono);opacity:0.6">#000957</span>
+  </div>
+  <div class="cell" style="background:hsl(234 100% 22%);color:#fff;">
+    <span class="label">card (dark)</span>
+    <span style="font-size:10px;font-family:var(--font-mono);opacity:0.6">22% L</span>
+  </div>
+  <div class="cell" style="background:var(--sidebar-primary);color:#fff;">
+    <span class="label">primary</span>
+    <span style="font-size:10px;font-family:var(--font-mono);opacity:0.75">#3F8CFF</span>
+  </div>
+  <div class="cell" style="background:var(--sidebar-foreground);color:var(--sidebar-background);">
+    <span class="label">foreground</span>
+    <span style="font-size:10px;font-family:var(--font-mono);opacity:0.5">#FFFFFF</span>
+  </div>
+  <div class="cell" style="background:var(--sidebar-accent);color:var(--foreground);">
+    <span class="label">accent</span>
+    <span style="font-size:10px;font-family:var(--font-mono);opacity:0.6">muted</span>
+  </div>
+</div>
+<div class="meta">
+  <span>Sidebar always uses Night Blue background regardless of mode</span>
+</div>
+</body>
+</html>

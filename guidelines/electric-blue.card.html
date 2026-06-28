@@ -1,0 +1,62 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Electric Blue" subtitle="Secondary accent palette — Electric Blue scale" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); font-family: var(--font-sans); }
+  .row { display: flex; gap: 0; }
+  .swatch {
+    flex: 1;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8px 10px;
+  }
+  .label { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 1px; }
+  .hex   { font-size: 10px; font-family: var(--font-mono); opacity: 0.75; }
+  .meta  { display: flex; justify-content: space-between; margin-top: 12px; }
+  .meta-item { font-size: 11px; color: var(--muted-foreground); }
+  .meta-item strong { font-weight: 600; color: var(--foreground); }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="swatch" style="background: hsl(215 100% 96%); color: hsl(216 100% 30%); border: 1px solid hsl(216 100% 88%);">
+    <span class="label">25</span>
+    <span class="hex">#ECF4FF</span>
+  </div>
+  <div class="swatch" style="background: hsl(216 100% 93%); color: hsl(216 100% 30%); border: 1px solid hsl(216 100% 84%);">
+    <span class="label">50</span>
+    <span class="hex">#D9E8FF</span>
+  </div>
+  <div class="swatch" style="background: hsl(216 100% 85%); color: hsl(216 100% 25%);">
+    <span class="label">200</span>
+    <span class="hex">#99C2FF</span>
+  </div>
+  <div class="swatch" style="background: hsl(216 100% 76%); color: hsl(216 100% 20%);">
+    <span class="label">300</span>
+    <span class="hex">#66A8FF</span>
+  </div>
+  <div class="swatch" style="background: hsl(216 100% 62%); color: #fff; position:relative;">
+    <span style="position:absolute;top:8px;right:8px;font-size:9px;font-weight:700;letter-spacing:0.08em;opacity:0.7;color:#fff;">ACCENT</span>
+    <span class="label">400</span>
+    <span class="hex">#3F8CFF</span>
+  </div>
+  <div class="swatch" style="background: hsl(216 100% 45%); color: #fff;">
+    <span class="label">700</span>
+    <span class="hex">#0064E6</span>
+  </div>
+  <div class="swatch" style="background: hsl(216 100% 25%); color: #fff;">
+    <span class="label">900</span>
+    <span class="hex">#003880</span>
+  </div>
+</div>
+<div class="meta">
+  <span class="meta-item"><strong>Electric Blue</strong> — Accent & action color</span>
+  <span class="meta-item"><strong>var(--electric-blue-25</strong> → <strong>--electric-blue-400)</strong></span>
+</div>
+</body>
+</html>

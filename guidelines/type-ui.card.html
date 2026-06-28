@@ -1,0 +1,41 @@
+<!-- @dsCard group="Type" viewport="700x300" name="UI Type" subtitle="Heebo sans — h3 through body scale" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px 32px; background: var(--background); }
+  .row { display: flex; align-items: baseline; gap: 16px; border-bottom: 1px solid var(--border); padding: 8px 0; }
+  .row:last-child { border-bottom: none; }
+  .label { font-family: var(--font-mono); font-size: 10px; color: var(--muted-foreground); width: 130px; flex-shrink: 0; }
+  .sample { font-family: var(--font-sans); color: var(--foreground); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <span class="label">h3 · 30px · 300</span>
+    <span class="sample" style="font-size:30px;line-height:1.4;font-weight:300;">Passport Planning</span>
+  </div>
+  <div class="row">
+    <span class="label">h4 · 24px · 400</span>
+    <span class="sample" style="font-size:24px;line-height:1.4;font-weight:400;">Application Requirements</span>
+  </div>
+  <div class="row">
+    <span class="label">text-xl · 20px</span>
+    <span class="sample" style="font-size:20px;line-height:1.4;font-weight:400;">Explore your options worldwide</span>
+  </div>
+  <div class="row">
+    <span class="label">body-large · 18px</span>
+    <span class="sample" style="font-size:18px;line-height:1.4;font-weight:400;">We help you secure the life you deserve.</span>
+  </div>
+  <div class="row">
+    <span class="label">body · 16px</span>
+    <span class="sample" style="font-size:16px;line-height:1.4;font-weight:400;">Review your application status and next steps below.</span>
+  </div>
+  <div class="row">
+    <span class="label">body-small · 14px</span>
+    <span class="sample" style="font-size:14px;line-height:20px;font-weight:400;">Documents submitted — awaiting review by the relevant authority.</span>
+  </div>
+</body>
+</html>

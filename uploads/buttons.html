@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GCS Design System — Buttons</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yrsa:wght@400;500&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Brand scales (Figma source of truth) */
+    --night-blue-25: 218 17% 92%;
+    --night-blue-50: 233 22% 75%;
+    --night-blue-100: 232 18% 59%;
+    --night-blue-200: 233 41% 34%;
+    --night-blue-300: 233 60% 26%;
+    --night-blue-400: 233 100% 17%;
+    --electric-blue-25: 215 100% 96%;
+    --electric-blue-50: 216 100% 93%;
+    --electric-blue-400: 216 100% 62%;
+
+    /* Semantic tokens */
+    --background: 210 20% 98%;
+    --foreground: 220 43% 11%;
+    --card: 0 0% 100%;
+    --border: 216 100% 93%;
+    --muted-foreground: 221 13% 46%;
+    --primary: var(--night-blue-400);
+    --primary-foreground: 0 0% 100%;
+    --accent: var(--electric-blue-400);
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: var(--night-blue-400);
+
+    --radius: 0;
+    --font-sans: 'Heebo', system-ui, sans-serif;
+    --font-serif: 'Yrsa', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 64px 32px; }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 64px;
+    letter-spacing: 0;
+    margin: 0 0 12px;
+  }
+  h2 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: 0;
+    margin: 0 0 24px;
+  }
+  .lede { font-size: 18px; color: hsl(var(--muted-foreground)); margin: 0 0 48px; max-width: 720px; }
+
+  section { margin-bottom: 56px; }
+
+  .card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    padding: 32px;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+  }
+  .row + .row { margin-top: 24px; }
+
+  .label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  /* ====== BUTTON BASE ====== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease, opacity .2s ease;
+    user-select: none;
+  }
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring));
+  }
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* Sizes */
+  .btn-sm  { height: 36px; padding: 0 12px; font-size: 13px; }
+  .btn-md  { height: 40px; padding: 0 16px; }
+  .btn-lg  { height: 44px; padding: 0 32px; }
+  .btn-xl  { height: 48px; padding: 0 40px; font-size: 16px; }
+  .btn-icon { height: 40px; width: 40px; padding: 0; }
+
+  /* Variants */
+  .btn-primary {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  .btn-primary:hover {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  .btn-secondary {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+  .btn-secondary:hover {
+    background: #fff;
+    color: hsl(var(--primary));
+  }
+
+  .btn-outline {
+    background: transparent;
+    border-color: hsl(var(--night-blue-50));
+    color: hsl(var(--night-blue-50));
+  }
+  .btn-outline:hover {
+    background: #fff;
+    border-color: transparent;
+    color: hsl(var(--primary));
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: hsl(var(--primary));
+  }
+  .btn-ghost:hover {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  .btn-link {
+    background: transparent;
+    color: hsl(var(--primary));
+    text-transform: uppercase;
+    padding: 0 4px;
+    height: auto;
+  }
+  .btn-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  .btn-destructive {
+    background: hsl(var(--destructive));
+    color: hsl(var(--destructive-foreground));
+  }
+  .btn-destructive:hover { opacity: 0.9; }
+
+  /* Dark surface preview */
+  .surface-dark {
+    background: hsl(var(--primary));
+    color: #fff;
+  }
+  .surface-dark .label { color: hsl(var(--night-blue-50)); }
+
+  /* Icon */
+  .ico { width: 16px; height: 16px; flex: none; }
+</style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Buttons</h1>
+      <p class="lede">GCS button system — sharp corners (radius 0), uppercase labels, Heebo Medium 14px. Primary uses Night Blue 400; hover transitions to Electric Blue 400.</p>
+    </header>
+
+    <!-- VARIANTS -->
+    <section>
+      <h2>Variants</h2>
+      <div class="card">
+        <div class="row">
+          <span class="label">Primary · Secondary · Outline · Ghost · Link · Destructive</span>
+          <button class="btn btn-md btn-primary">Primary</button>
+          <button class="btn btn-md btn-secondary">Secondary</button>
+          <button class="btn btn-md btn-outline">Outline</button>
+          <button class="btn btn-md btn-ghost">Ghost</button>
+          <button class="btn btn-md btn-link">Link</button>
+          <button class="btn btn-md btn-destructive">Destructive</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIZES -->
+    <section>
+      <h2>Sizes</h2>
+      <div class="card">
+        <div class="row">
+          <span class="label">SM 36 · MD 40 · LG 44 · XL 48</span>
+          <button class="btn btn-sm btn-primary">Small</button>
+          <button class="btn btn-md btn-primary">Medium</button>
+          <button class="btn btn-lg btn-primary">Large</button>
+          <button class="btn btn-xl btn-primary">Extra Large</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATES -->
+    <section>
+      <h2>States</h2>
+      <div class="card">
+        <div class="row">
+          <span class="label">Default · Hover · Focus · Disabled</span>
+          <button class="btn btn-md btn-primary">Default</button>
+          <button class="btn btn-md btn-primary" style="background: hsl(var(--accent));">Hover</button>
+          <button class="btn btn-md btn-primary" style="box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring));">Focus</button>
+          <button class="btn btn-md btn-primary" disabled>Disabled</button>
+        </div>
+        <div class="row">
+          <button class="btn btn-md btn-outline">Default</button>
+          <button class="btn btn-md btn-outline" style="background:#fff; border-color: transparent; color: hsl(var(--primary));">Hover</button>
+          <button class="btn btn-md btn-outline" style="box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring));">Focus</button>
+          <button class="btn btn-md btn-outline" disabled>Disabled</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- WITH ICONS -->
+    <section>
+      <h2>With Icons</h2>
+      <div class="card">
+        <div class="row">
+          <button class="btn btn-md btn-primary">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            New Item
+          </button>
+          <button class="btn btn-md btn-secondary">
+            Continue
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+          <button class="btn btn-md btn-outline">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Download
+          </button>
+          <button class="btn btn-icon btn-primary" aria-label="Settings">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 15 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.36.13.66.36.91.66"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ON DARK -->
+    <section>
+      <h2>On Dark Surface</h2>
+      <div class="card surface-dark">
+        <div class="row">
+          <span class="label">Secondary and Outline are tuned for dark backgrounds</span>
+          <button class="btn btn-md btn-secondary">Secondary</button>
+          <button class="btn btn-md btn-outline">Outline</button>
+          <button class="btn btn-md btn-secondary">
+            Get Started
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- USAGE -->
+    <section>
+      <h2>Usage</h2>
+      <div class="card">
+        <p style="margin: 0 0 12px;"><strong>Primary</strong> — main action on a light surface. Hover swaps Night Blue → Electric Blue.</p>
+        <p style="margin: 0 0 12px;"><strong>Secondary</strong> — main action on dark surfaces; hover inverts to white + Night Blue text.</p>
+        <p style="margin: 0 0 12px;"><strong>Outline</strong> — tertiary action; default uses Night Blue 50 stroke, hover fills white with Night Blue text.</p>
+        <p style="margin: 0;"><strong>Ghost / Link</strong> — low-emphasis inline actions. <strong>Destructive</strong> — irreversible actions only.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

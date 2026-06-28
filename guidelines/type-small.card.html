@@ -1,0 +1,32 @@
+<!-- @dsCard group="Type" viewport="700x200" name="Small Text" subtitle="Caption, overline, serif-lg, mono styles" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px 32px; background: var(--background); }
+  .row { display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); padding: 10px 0; }
+  .row:last-child { border-bottom: none; }
+  .label { font-family: var(--font-mono); font-size: 10px; color: var(--muted-foreground); width: 150px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <span class="label">overline · 12px 600</span>
+    <span class="text-overline" style="color:var(--muted-foreground);">Program Requirements</span>
+  </div>
+  <div class="row">
+    <span class="label">caption · 12px 400</span>
+    <span class="text-caption" style="color:var(--muted-foreground);">Last updated 3 days ago · All times in UTC</span>
+  </div>
+  <div class="row">
+    <span class="label">serif-lg · 18px 500</span>
+    <span class="text-serif-lg" style="color:var(--foreground);">"The most trusted route to a second passport."</span>
+  </div>
+  <div class="row">
+    <span class="label">mono · 14px</span>
+    <span class="text-mono" style="color:var(--foreground);">APP-2024-GR-00847 · Status: APPROVED</span>
+  </div>
+</body>
+</html>

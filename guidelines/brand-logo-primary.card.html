@@ -1,0 +1,39 @@
+<!-- @dsCard group="Brand" viewport="700x220" name="Primary Logo" subtitle="GCS primary logo — light, dark, and navy backgrounds" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-sans); }
+  .row { display: flex; height: 220px; }
+  .cell {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .cell img { max-width: 180px; max-height: 64px; object-fit: contain; }
+  .tag { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.5; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="cell" style="background:#F5F7FA; border-right:1px solid var(--border);">
+    <img src="../assets/logos/GCS-Primary-Blue.svg" alt="GCS Primary Logo — Blue on light">
+    <span class="tag" style="color:#000957;">Light background</span>
+  </div>
+  <div class="cell" style="background:hsl(233 100% 17%); border-right:1px solid hsl(233 60% 24%);">
+    <img src="../assets/logos/GCS-Primary-White.svg" alt="GCS Primary Logo — White on navy">
+    <span class="tag" style="color:#fff;">Dark / navy background</span>
+  </div>
+  <div class="cell" style="background:#1a1a1a;">
+    <img src="../assets/logos/GCS-Primary-White.svg" alt="GCS Primary Logo — White on black">
+    <span class="tag" style="color:#fff;">Black background</span>
+  </div>
+</div>
+</body>
+</html>

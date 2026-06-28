@@ -1,0 +1,39 @@
+<!-- @dsCard group="Brand" viewport="700x160" name="Secondary Logo" subtitle="GCS secondary / wordmark logo variants" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-sans); }
+  .row { display: flex; height: 160px; }
+  .cell {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .cell img { max-width: 240px; max-height: 32px; object-fit: contain; }
+  .tag { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.5; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="cell" style="background:#F5F7FA; border-right:1px solid var(--border);">
+    <img src="../assets/logos/GCS-Secondary-Blue.svg" alt="GCS Wordmark — Blue">
+    <span class="tag" style="color:#000957;">Blue on light</span>
+  </div>
+  <div class="cell" style="background:hsl(233 100% 17%); border-right:1px solid hsl(233 60% 24%);">
+    <img src="../assets/logos/GCS-Secondary-White.svg" alt="GCS Wordmark — White">
+    <span class="tag" style="color:#fff;">White on dark</span>
+  </div>
+  <div class="cell" style="background:#fff; border-left:1px solid var(--border);">
+    <img src="../assets/logos/GCS-Secondary-Black.svg" alt="GCS Wordmark — Black">
+    <span class="tag" style="color:#000;">Black on white</span>
+  </div>
+</div>
+</body>
+</html>

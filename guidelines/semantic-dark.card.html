@@ -1,0 +1,38 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="Semantic — Dark" subtitle="Semantic color tokens for dark mode surfaces" -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--background); font-family: var(--font-sans); }
+  .grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; }
+  .cell { display: flex; flex-direction: column; gap: 4px; }
+  .dot {
+    height: 48px;
+    border: 1px solid hsl(233 60% 30%);
+  }
+  .name { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground); line-height: 1.2; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="cell"><div class="dot" style="background:var(--background)"></div><span class="name">background</span></div>
+  <div class="cell"><div class="dot" style="background:var(--foreground)"></div><span class="name">foreground</span></div>
+  <div class="cell"><div class="dot" style="background:var(--card)"></div><span class="name">card</span></div>
+  <div class="cell"><div class="dot" style="background:var(--primary)"></div><span class="name">primary</span></div>
+  <div class="cell"><div class="dot" style="background:var(--secondary)"></div><span class="name">secondary</span></div>
+  <div class="cell"><div class="dot" style="background:var(--muted)"></div><span class="name">muted</span></div>
+  <div class="cell"><div class="dot" style="background:var(--muted-foreground)"></div><span class="name">muted-fg</span></div>
+  <div class="cell"><div class="dot" style="background:var(--accent)"></div><span class="name">accent</span></div>
+  <div class="cell"><div class="dot" style="background:var(--destructive)"></div><span class="name">destructive</span></div>
+  <div class="cell"><div class="dot" style="background:var(--border)"></div><span class="name">border</span></div>
+  <div class="cell"><div class="dot" style="background:var(--ring)"></div><span class="name">ring</span></div>
+  <div class="cell"><div class="dot" style="background:var(--success)"></div><span class="name">success</span></div>
+  <div class="cell"><div class="dot" style="background:var(--warning)"></div><span class="name">warning</span></div>
+  <div class="cell"><div class="dot" style="background:var(--info)"></div><span class="name">info</span></div>
+  <div class="cell"><div class="dot" style="background:var(--star)"></div><span class="name">star</span></div>
+  <div class="cell"><div class="dot" style="background:var(--sidebar-background)"></div><span class="name">sidebar-bg</span></div>
+</div>
+</body>
+</html>

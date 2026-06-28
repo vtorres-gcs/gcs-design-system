@@ -1,0 +1,84 @@
+<!-- @dsCard group="Components" viewport="700x520" name="Accordion" subtitle="Collapsible content panels for organizing information in a compact, expandable format." -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Yrsa:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 32px; background: var(--background); font-family: var(--font-sans); }
+  h1 { font-family: var(--font-serif); font-size: 40px; font-weight: 400; margin: 0 0 8px; color: var(--foreground); }
+  .desc { font-size: 14px; color: var(--muted-foreground); margin: 0 0 28px; }
+  h2 { font-family: var(--font-serif); font-size: 26px; font-weight: 400; margin: 0 0 16px; color: var(--foreground); }
+  .section { margin-bottom: 36px; }
+  .divider { height: 1px; background: var(--border); margin: 4px 0 28px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { Accordion } = window.GCSDesignSystem_43c089;
+
+const defaultItems = [
+  {
+    title: 'What is a Golden Visa?',
+    content: 'A Golden Visa is a residency-by-investment programme that grants residency rights to non-EU nationals in exchange for a qualifying investment in the host country.',
+  },
+  {
+    title: 'How long does the process take?',
+    content: 'The typical processing time ranges from 6 to 12 months, depending on the programme and completeness of your application documentation.',
+  },
+  {
+    title: 'Can my family be included?',
+    content: 'Yes. Most programmes allow you to include your spouse, dependent children, and in some cases dependent parents under the same application.',
+  },
+];
+
+const multiItems = [
+  {
+    title: 'Investment requirements',
+    content: 'Minimum investment thresholds vary by programme. Portugal requires €500,000 for real estate or €250,000 for cultural investment. Greece starts at €250,000.',
+  },
+  {
+    title: 'Tax implications',
+    content: 'Residency does not automatically create tax obligations. However, spending more than 183 days per year in a country may trigger tax residency. We recommend consulting a tax advisor.',
+  },
+  {
+    title: 'Renewal and path to citizenship',
+    content: 'Most Golden Visa programmes require renewal every 1–2 years. After 5 years of legal residency, many programmes offer a path to permanent residency or citizenship.',
+  },
+];
+
+function Demo() {
+  return (
+    <div>
+      <h1>Accordion</h1>
+      <p className="desc">Collapsible content panels for organizing information in a compact, expandable format.</p>
+
+      <div className="section">
+        <h2>Default</h2>
+        <Accordion items={defaultItems} multiOpen={false} />
+      </div>
+
+      <div className="divider"></div>
+
+      <div className="section">
+        <h2>Multiple Open</h2>
+        <Accordion items={multiItems} multiOpen={true} />
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

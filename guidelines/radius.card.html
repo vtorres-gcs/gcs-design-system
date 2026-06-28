@@ -1,0 +1,59 @@
+<!-- @dsCard group="Spacing" viewport="700x120" name="Radius" subtitle="Border radius scale — default is 0 (sharp corners)" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); font-family: var(--font-sans); }
+  .row { display: flex; align-items: center; gap: 20px; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .box {
+    width: 64px; height: 52px;
+    background: var(--primary);
+  }
+  .label { font-size: 10px; font-family: var(--font-mono); color: var(--muted-foreground); text-align: center; }
+  .val { font-size: 11px; font-weight: 600; color: var(--foreground); text-align: center; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="item">
+    <div class="box" style="border-radius:0;"></div>
+    <span class="val">0px</span>
+    <span class="label">--radius (default)</span>
+  </div>
+  <div class="item">
+    <div class="box" style="border-radius:2px;"></div>
+    <span class="val">2px</span>
+    <span class="label">--radius-sm</span>
+  </div>
+  <div class="item">
+    <div class="box" style="border-radius:4px;"></div>
+    <span class="val">4px</span>
+    <span class="label">--radius-md</span>
+  </div>
+  <div class="item">
+    <div class="box" style="border-radius:8px;"></div>
+    <span class="val">8px</span>
+    <span class="label">--radius-lg</span>
+  </div>
+  <div class="item">
+    <div class="box" style="border-radius:12px;"></div>
+    <span class="val">12px</span>
+    <span class="label">--radius-xl</span>
+  </div>
+  <div class="item">
+    <div class="box" style="border-radius:9999px;"></div>
+    <span class="val">full</span>
+    <span class="label">--radius-full</span>
+  </div>
+  <div style="margin-left:16px;padding-left:16px;border-left:1px solid var(--border);">
+    <div style="font-size:11px;color:var(--muted-foreground);line-height:1.6;max-width:180px;">
+      The default brand uses <strong style="color:var(--foreground);">0px radius</strong>. 
+      Only use rounded variants for avatars, pills, and specific UI contexts.
+    </div>
+  </div>
+</div>
+</body>
+</html>

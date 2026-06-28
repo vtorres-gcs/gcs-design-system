@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Document" description="A4 formal report — cover, content pages, hero image section, dark CTA page" -->
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yrsa:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Heebo:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./ds-base.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+@page { size: 210mm 297mm; margin: 0; }
+
+@media print {
+  html, body { margin: 0 !important; padding: 0 !important; }
+  [data-doc-wrapper] {
+    background: none !important;
+    padding: 0 !important;
+    min-height: unset !important;
+  }
+  [data-doc-page] {
+    margin: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    page-break-after: always;
+    break-after: page;
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: unset !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+  [data-doc-page]:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+}
+</style>
+</helmet>
+
+<div data-doc-wrapper="" style="background: #DDE0E8; padding: 40px 24px; min-height: 100vh; font-family: 'Heebo', 'Helvetica Neue', sans-serif;">
+
+  <!-- ── PAGE 1: COVER ─────────────────────────────────── -->
+  <div data-doc-page="" style="width: 794px; height: 1123px; margin: 0 auto 32px; background-color: #000957; background-image: url(../../assets/backgrounds/background-document.png); background-size: cover; background-position: bottom right; border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; padding: 60px; overflow: hidden;">
+    <div>
+      <img src="../../assets/logos/GCS-Symbol-White.svg" style="height: 44px; width: auto; opacity: 0.92;">
+    </div>
+    <div style="flex: 1;"></div>
+    <div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.42); margin-bottom: 22px;">{{ eyebrow }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 60px; color: #FFFFFF; line-height: 1.06; letter-spacing: -1.5px;">{{ title }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 60px; color: #FFFFFF; line-height: 1.06; letter-spacing: -1.5px; margin-bottom: 30px;">{{ titleItalic }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-weight: 300; font-size: 17px; color: rgba(255,255,255,0.55); line-height: 1.55;">{{ subtitle }}</div>
+    </div>
+  </div>
+
+  <!-- ── PAGE 2: WHITE CONTENT ─────────────────────────── -->
+  <div data-doc-page="" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">{{ sectionTag }}</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 60px; flex-shrink: 0;"></div>
+    <div style="padding: 52px 60px 44px; flex: 1;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #000957; margin-bottom: 18px;">Overview</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; color: #16182A; line-height: 1.1; letter-spacing: -1px; margin-bottom: 40px;">Global Passport Index 2026</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 17px; font-weight: 400; line-height: 1.8; color: #252839; margin-bottom: 24px;">The Global Passport Index 2026 evaluates 197 countries and territories across three dimensions, including mobility, investment attractiveness, and quality of life. The findings highlight the countries currently best positioned in an increasingly interconnected world.</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; color: #343750; margin-bottom: 24px;">The 2026 Index reveals that the gap between the world's strongest and weakest passports continues to widen, reflecting growing disparities in mobility access, economic opportunity, and quality of life.</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; color: #343750; margin-bottom: 24px;">At the same time, international travel remains shaped by a system that is far less reciprocal than many assume, with fewer than 40 percent of bilateral country relationships operating on an equal visa basis.</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; color: #343750; margin-bottom: 24px;">While mobility remains a defining measure of passport strength, the strongest passports are distinguished by broader factors, including economic competitiveness, quality of life, and long-term stability.</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; color: #343750;">As a result, passport strength today reflects far more than the number of visa-free destinations.</div>
+    </div>
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© 2026 Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">02</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 3: HERO IMAGE + CONTENT ──────────────────── -->
+  <div data-doc-page="" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="position: relative; height: 380px; background: #000830; flex-shrink: 0; overflow: hidden;">
+      <div style="position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, #000957 0px, #000957 24px, #000D70 24px, #000D70 48px); opacity: 0.55;"></div>
+      <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; opacity: 0.25;">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="1" y="7" width="34" height="24" rx="2" stroke="white" stroke-width="1.5"></rect><circle cx="13" cy="17" r="4" stroke="white" stroke-width="1.5"></circle><path d="M1 27l9-8 6 5 5-4 14 8" stroke="white" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+        <span style="font-family: 'Heebo', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: white;">Insert image — e.g. city landscape</span>
+      </div>
+      <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 70%; background: linear-gradient(to bottom, transparent, rgba(0,9,87,0.94));"></div>
+      <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 60px 32px;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.52); margin-bottom: 8px;">01 · {{ sectionTag }}</div>
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 54px; color: #FFFFFF; line-height: 1.05; letter-spacing: -1px;">Sweden</div>
+      </div>
+    </div>
+    <div style="padding: 48px 60px 44px; flex: 1;">
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 28px; color: #16182A; line-height: 1.25; margin-bottom: 36px; letter-spacing: -0.3px;">The World's Strongest Passport in 2026</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; color: #343750; margin-bottom: 22px;">Sweden occupies the highest position in the Global Passport Index 2026.</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; color: #343750; margin-bottom: 22px;">Its leadership reflects consistent performance across the three dimensions of the index, combining strong international mobility with one of the world's highest standards of living and a highly competitive economic environment.</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; color: #343750; margin-bottom: 22px;">Unlike countries that excel primarily in mobility, Sweden's position is built on balance. The country performs strongly across quality of life, investment attractiveness, and global access, demonstrating that long-term passport strength depends on a combination of factors rather than mobility alone.</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; color: #343750;">For internationally mobile individuals and families, Sweden represents the benchmark for a well-rounded global passport in 2026.</div>
+    </div>
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© 2026 Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">03</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 3B: CONTENT + FULL-WIDTH IMAGE ───────────── -->
+  <div data-doc-page="" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <!-- Header -->
+    <div style="padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">{{ sectionTag }}</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 60px; flex-shrink: 0;"></div>
+    <!-- Content -->
+    <div style="padding: 48px 60px 0; flex-shrink: 0;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #000957; margin-bottom: 16px;">{{ sectionTag }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; color: #16182A; line-height: 1.1; letter-spacing: -1px; margin-bottom: 36px;">The World's Strongest Passports in 2026</div>
+    </div>
+    <!-- Full-width image placeholder -->
+    <div style="margin: 0 60px; flex-shrink: 0; background: #000D50; position: relative; overflow: hidden; aspect-ratio: 16 / 7; border-radius: 2px;">
+      <div style="position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, #000957 0px, #000957 24px, #000D70 24px, #000D70 48px); opacity: 0.55;"></div>
+      <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; opacity: 0.28;">
+        <svg width="40" height="40" viewBox="0 0 36 36" fill="none"><rect x="1" y="7" width="34" height="24" rx="2" stroke="white" stroke-width="1.5"></rect><circle cx="13" cy="17" r="4" stroke="white" stroke-width="1.5"></circle><path d="M1 27l9-8 6 5 5-4 14 8" stroke="white" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+        <span style="font-family: 'Heebo', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: white;">Full-width image — e.g. aerial cityscape</span>
+      </div>
+    </div>
+    <!-- Body text -->
+    <div style="padding: 40px 60px 44px; flex: 1;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; color: #343750; margin-bottom: 22px;">Sweden occupies the highest position in the Global Passport Index 2026. Its leadership reflects consistent performance across all three dimensions of the index, combining strong international mobility with one of the world's highest standards of living.</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; color: #343750; margin-bottom: 22px;">Unlike countries that excel primarily in mobility, Sweden's position is built on balance. The country performs strongly across quality of life, investment attractiveness, and global access, demonstrating that long-term passport strength depends on a combination of factors.</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; color: #343750;">For internationally mobile individuals and families, Sweden represents the benchmark for a well-rounded global passport in 2026.</div>
+    </div>
+    <!-- Footer -->
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© 2026 Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">03</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 4: COMPARISON TABLE ─────────────────────── -->
+  <div data-doc-page="" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">{{ sectionTag }}</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 60px; flex-shrink: 0;"></div>
+    <div style="padding: 48px 60px 40px; flex: 1; display: flex; flex-direction: column;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #000957; margin-bottom: 16px;">Citizenship by Investment</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #16182A; line-height: 1.1; letter-spacing: -0.8px; margin-bottom: 14px;">Programme Comparison 2026</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #6F7185; line-height: 1.7; margin-bottom: 36px;">An overview of the world's leading citizenship by investment programmes, compared across mobility strength, entry cost, processing speed, and quality of life.</div>
+      <!-- Table -->
+      <div style="border: 1px solid #E8E9F2; border-radius: 4px; overflow: hidden; margin-bottom: 20px;">
+        <!-- Header row -->
+        <div style="display: grid; grid-template-columns: 170px 1fr 1fr 1fr 120px; background: #000957;">
+          <div style="padding: 13px 20px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5);">Programme</div>
+          <div style="padding: 13px 16px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); border-left: 1px solid rgba(255,255,255,0.1);">Visa-Free Access</div>
+          <div style="padding: 13px 16px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); border-left: 1px solid rgba(255,255,255,0.1);">Min. Investment</div>
+          <div style="padding: 13px 16px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); border-left: 1px solid rgba(255,255,255,0.1);">Timeline</div>
+          <div style="padding: 13px 16px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); border-left: 1px solid rgba(255,255,255,0.1); text-align: center;">Quality of Life</div>
+        </div>
+        <!-- Malta -->
+        <div style="display: grid; grid-template-columns: 170px 1fr 1fr 1fr 120px; background: #FFFFFF; border-top: 1px solid #E8E9F2;">
+          <div style="padding: 18px 20px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 2px;">Malta</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD;">EU Citizenship</div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">186 countries</div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD; margin-top: 2px;">Schengen + full EU</div>
+            </div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">€690,000</div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD; margin-top: 2px;">National Development Fund</div>
+            </div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">12–36 months</div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #F0F1F8; display: flex; align-items: center; justify-content: center;">
+            <div style="background: #E7F5ED; color: #1B7A5A; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; padding: 5px 10px; border-radius: 3px; text-transform: uppercase;">Excellent</div>
+          </div>
+        </div>
+        <!-- Portugal -->
+        <div style="display: grid; grid-template-columns: 170px 1fr 1fr 1fr 120px; background: #F9FAFF; border-top: 1px solid #E8E9F2;">
+          <div style="padding: 18px 20px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 2px;">Portugal</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD;">EU Citizenship</div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">186 countries</div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD; margin-top: 2px;">Schengen + full EU</div>
+            </div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">€250,000</div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD; margin-top: 2px;">Investment fund</div>
+            </div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">12–24 months</div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #ECEDF5; display: flex; align-items: center; justify-content: center;">
+            <div style="background: #E7F5ED; color: #1B7A5A; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; padding: 5px 10px; border-radius: 3px; text-transform: uppercase;">Excellent</div>
+          </div>
+        </div>
+        <!-- St. Kitts -->
+        <div style="display: grid; grid-template-columns: 170px 1fr 1fr 1fr 120px; background: #FFFFFF; border-top: 1px solid #E8E9F2;">
+          <div style="padding: 18px 20px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 2px;">St. Kitts &amp; Nevis</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD;">Caribbean Citizenship</div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">157 countries</div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD; margin-top: 2px;">UK &amp; Schengen access</div>
+            </div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">$250,000</div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD; margin-top: 2px;">Sustainable Growth Fund</div>
+            </div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">2–6 months</div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #F0F1F8; display: flex; align-items: center; justify-content: center;">
+            <div style="background: #EBF1FC; color: #2A5ECC; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; padding: 5px 10px; border-radius: 3px; text-transform: uppercase;">High</div>
+          </div>
+        </div>
+        <!-- Grenada -->
+        <div style="display: grid; grid-template-columns: 170px 1fr 1fr 1fr 120px; background: #F9FAFF; border-top: 1px solid #E8E9F2;">
+          <div style="padding: 18px 20px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 2px;">Grenada</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD;">Caribbean Citizenship</div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">144 countries</div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD; margin-top: 2px;">US E-2 visa eligible</div>
+            </div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">$150,000</div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD; margin-top: 2px;">National Transformation Fund</div>
+            </div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">3–6 months</div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #ECEDF5; display: flex; align-items: center; justify-content: center;">
+            <div style="background: #EBF1FC; color: #2A5ECC; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; padding: 5px 10px; border-radius: 3px; text-transform: uppercase;">High</div>
+          </div>
+        </div>
+        <!-- Vanuatu -->
+        <div style="display: grid; grid-template-columns: 170px 1fr 1fr 1fr 120px; background: #FFFFFF; border-top: 1px solid #E8E9F2;">
+          <div style="padding: 18px 20px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 2px;">Vanuatu</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD;">Pacific Citizenship</div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">98 countries</div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD; margin-top: 2px;">Fastest processing globally</div>
+            </div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">$130,000</div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD; margin-top: 2px;">Development Support Programme</div>
+            </div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">1–2 months</div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #F0F1F8; display: flex; align-items: center; justify-content: center;">
+            <div style="background: #FEF3E2; color: #C4832A; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; padding: 5px 10px; border-radius: 3px; text-transform: uppercase;">Moderate</div>
+          </div>
+        </div>
+        <!-- Turkey -->
+        <div style="display: grid; grid-template-columns: 170px 1fr 1fr 1fr 120px; background: #F9FAFF; border-top: 1px solid #E8E9F2;">
+          <div style="padding: 18px 20px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 2px;">Turkey</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD;">Eurasian Citizenship</div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">110 countries</div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD; margin-top: 2px;">Dual nationality permitted</div>
+            </div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">$400,000</div>
+              <div style="font-family: 'Heebo', sans-serif; font-size: 10px; color: #9B9CAD; margin-top: 2px;">Real estate investment</div>
+            </div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A;">3–6 months</div>
+          </div>
+          <div style="padding: 18px 16px; border-left: 1px solid #ECEDF5; display: flex; align-items: center; justify-content: center;">
+            <div style="background: #EBF1FC; color: #2A5ECC; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; padding: 5px 10px; border-radius: 3px; text-transform: uppercase;">High</div>
+          </div>
+        </div>
+      </div>
+      <!-- Legend -->
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-bottom: 20px;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #9B9CAD;">Quality of Life</span>
+        <div style="display: flex; align-items: center; gap: 7px;">
+          <div style="background: #E7F5ED; color: #1B7A5A; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; padding: 3px 8px; border-radius: 2px; text-transform: uppercase;">Excellent</div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #9B9CAD;">Top-tier EU lifestyle &amp; services</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 7px;">
+          <div style="background: #EBF1FC; color: #2A5ECC; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; padding: 3px 8px; border-radius: 2px; text-transform: uppercase;">High</div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #9B9CAD;">Strong infrastructure &amp; stability</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 7px;">
+          <div style="background: #FEF3E2; color: #C4832A; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; padding: 3px 8px; border-radius: 2px; text-transform: uppercase;">Moderate</div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #9B9CAD;">Developing infrastructure</span>
+        </div>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-style: italic; color: #C6C8D5; line-height: 1.65; margin-top: auto;">All figures are indicative and subject to change. Minimum investment thresholds may vary based on programme options selected. GCS recommends obtaining independent legal and financial advice before proceeding.</div>
+    </div>
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© 2026 Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">04</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 5: PORTUGAL CASE STUDY ───────────────────── -->
+  <div data-doc-page="" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">{{ sectionTag }}</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 60px; flex-shrink: 0;"></div>
+    <!-- Full-width image -->
+    <div style="position: relative; height: 260px; background: #000D50; flex-shrink: 0; overflow: hidden;">
+      <div style="position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, #000957 0px, #000957 24px, #000D70 24px, #000D70 48px); opacity: 0.55;"></div>
+      <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; opacity: 0.2;">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="1" y="7" width="34" height="24" rx="2" stroke="white" stroke-width="1.5"></rect><circle cx="13" cy="17" r="4" stroke="white" stroke-width="1.5"></circle><path d="M1 27l9-8 6 5 5-4 14 8" stroke="white" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: white;">Full-width image — e.g. Lisbon cityscape</span>
+      </div>
+      <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 65%; background: linear-gradient(to bottom, transparent, rgba(0,9,87,0.9));"></div>
+      <div style="position: absolute; bottom: 28px; left: 60px; right: 60px;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 7px;">Case Study · Portugal</div>
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #FFFFFF; line-height: 1.05; letter-spacing: -0.8px;">From Dubai to Lisbon</div>
+      </div>
+    </div>
+    <!-- Pull quote -->
+    <div style="margin: 36px 60px 0; border-left: 3px solid #000957; padding: 16px 24px; background: #F2F3FE; border-radius: 0 4px 4px 0; flex-shrink: 0;">
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 22px; color: #000957; line-height: 1.4; letter-spacing: -0.2px; margin-bottom: 10px;">“Portugal gave our family something no other programme could — the right to call Europe home, without leaving behind who we are.”</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #6F7185;">— GCS Client, Dubai · 2024</div>
+    </div>
+    <!-- Two-column block -->
+    <div style="padding: 32px 60px 40px; flex: 1; display: flex; gap: 36px; align-items: flex-start;">
+      <!-- Text column -->
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #000957; margin-bottom: 12px;">The Challenge</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #343750; line-height: 1.8; margin-bottom: 24px;">A family of four from Dubai — dual Indian nationals with strong ties to the UAE — approached GCS seeking a pathway to EU citizenship. Their priorities were clear: broad global access, European healthcare and education for their children, and a country with a strong quality of life.</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #000957; margin-bottom: 12px;">The Solution</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #343750; line-height: 1.8; margin-bottom: 28px;">GCS recommended Portugal's Golden Visa programme via an investment fund, aligning with the family's preference for a passive, low-risk route. Residency was granted in 18 months, with Portuguese citizenship approved five years later.</div>
+        <!-- Stats -->
+        <div style="display: flex; gap: 14px;">
+          <div style="flex: 1; background: #F2F3FE; padding: 18px 14px; border-radius: 4px; text-align: center;">
+            <div style="font-family: 'Yrsa', serif; font-size: 30px; color: #000957; font-weight: 400; line-height: 1;">18</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #6F7185; margin-top: 5px;">Months to residency</div>
+          </div>
+          <div style="flex: 1; background: #F2F3FE; padding: 18px 14px; border-radius: 4px; text-align: center;">
+            <div style="font-family: 'Yrsa', serif; font-size: 30px; color: #000957; font-weight: 400; line-height: 1;">186</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #6F7185; margin-top: 5px;">Visa-free countries</div>
+          </div>
+          <div style="flex: 1; background: #F2F3FE; padding: 18px 14px; border-radius: 4px; text-align: center;">
+            <div style="font-family: 'Yrsa', serif; font-size: 30px; color: #000957; font-weight: 400; line-height: 1;">4</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #6F7185; margin-top: 5px;">Family members</div>
+          </div>
+        </div>
+      </div>
+      <!-- Portrait image -->
+      <div style="width: 210px; flex-shrink: 0;">
+        <div style="width: 210px; height: 300px; background: #000D50; border-radius: 3px; overflow: hidden; position: relative; margin-bottom: 12px;">
+          <div style="position: absolute; inset: 0; background: repeating-linear-gradient(135deg, #000957 0px, #000957 16px, #000D70 16px, #000D70 32px); opacity: 0.55;"></div>
+          <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; opacity: 0.22;">
+            <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect x="1" y="7" width="34" height="24" rx="2" stroke="white" stroke-width="1.5"></rect><circle cx="13" cy="17" r="4" stroke="white" stroke-width="1.5"></circle><path d="M1 27l9-8 6 5 5-4 14 8" stroke="white" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: white; text-align: center; line-height: 1.6;">Portrait photo<br>or city detail</span>
+          </div>
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 14px; background: linear-gradient(to top, rgba(0,9,87,0.72), transparent);">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6);">Lisbon, Portugal</div>
+          </div>
+        </div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #9B9CAD; line-height: 1.65;">The family relocated to Lisbon in 2023, enrolling their children in an international school while maintaining their UAE residency.</div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© 2026 Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">05</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 6: DARK CTA PAGE ──────────────────────────── -->
+  <div data-doc-page="" style="width: 794px; min-height: 1123px; margin: 0 auto; background: linear-gradient(160deg, #0F1A2D 0%, #000957 100%); border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; padding: 60px; overflow: hidden;">
+    <div>
+      <img src="../../assets/logos/GCS-Secondary-White.svg" style="height: 43px; width: 208px">
+    </div>
+    <div style="padding-top: 64px; flex: 1; display: flex; flex-direction: column;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: #3D51E8; margin-bottom: 18px;">{{ eyebrow }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 58px; color: #FFFFFF; line-height: 1.06; letter-spacing: -1.5px; margin-bottom: 40px;">Read the Full Report</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 22px;">As mobility patterns evolve and global inequalities in passport strength become more pronounced, individuals and families are placing greater emphasis on long-term access, stability, and optionality.</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 44px;">The Global Passport Index 2026 provides a comprehensive analysis of passport strength across 197 countries and territories, examining the factors that shape global mobility and international competitiveness.</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 22px; color: #3D51E8; margin-bottom: 22px;">Inside the report:</div>
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 48px;">
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
+          <div style="width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.45); flex-shrink: 0; margin-top: 8px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.65;">The complete 2026 ranking of passports assessed in the Index</span>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
+          <div style="width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.45); flex-shrink: 0; margin-top: 8px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.65;">An explanation of how the Global Passport Index was constructed</span>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
+          <div style="width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.45); flex-shrink: 0; margin-top: 8px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.65;">Regional trends shaping global mobility</span>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
+          <div style="width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.45); flex-shrink: 0; margin-top: 8px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.65;">Analysis of reciprocity and international visa relationships</span>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
+          <div style="width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.45); flex-shrink: 0; margin-top: 8px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.65;">Five-year passport performance trends</span>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
+          <div style="width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.45); flex-shrink: 0; margin-top: 8px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.65;">Strategic insights into mobility, quality of life, and investment attractiveness</span>
+        </div>
+      </div>
+      <div style="font-family: 'Yrsa', serif; font-style: italic; font-weight: 300; font-size: 16px; color: rgba(255,255,255,0.42); line-height: 1.8;">Subscribers will receive early access to the full report ahead of its public release in late June 2026.</div>
+    </div>
+    <div style="margin: 0 -60px -60px; border-top: 1px solid rgba(255,255,255,0.12); padding: 14px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: rgba(255,255,255,0.3);">© 2026 Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.08em;">06</span>
+    </div>
+
+  </div>
+
+  <!-- ── PAGE 5: LIGHT CTA ────────────────────────────────── -->
+  <div data-doc-page="" style="width: 794px; height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">{{ sectionTag }}</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 60px; flex-shrink: 0;"></div>
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 64px 56px;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #3D51E8; margin-bottom: 20px;">Next Steps</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 52px; color: #16182A; line-height: 1.1; letter-spacing: -1px; margin-bottom: 24px;">Ready to Start<br><em style="font-style: italic;">Your Journey?</em></div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; color: #343750; line-height: 1.8; max-width: 520px; margin-bottom: 48px;">Our advisors are available to guide you through every stage of the process — from your initial assessment to receiving your residence card. The first step is a confidential consultation with no obligation.</div>
+      <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 52px;">
+        <div style="display: flex; gap: 20px; align-items: center; padding: 20px 24px; background: #F2F3FE; border-radius: 6px;">
+          <div style="width: 40px; height: 40px; background: #000957; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg>
+          </div>
+          <div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 3px;">Phone</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 500; color: #16182A;">+44 20 8068 3119</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 20px; align-items: center; padding: 20px 24px; background: #F2F3FE; border-radius: 6px;">
+          <div style="width: 40px; height: 40px; background: #000957; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+          </div>
+          <div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 3px;">Email</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 500; color: #16182A;">info@globalcitizensolutions.com</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 20px; align-items: center; padding: 20px 24px; background: #F2F3FE; border-radius: 6px;">
+          <div style="width: 40px; height: 40px; background: #000957; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
+          </div>
+          <div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 3px;">Website</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 500; color: #16182A;">globalcitizensolutions.com</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-family: 'Yrsa', serif; font-style: italic; font-size: 16px; color: #9B9CAD; line-height: 1.75;">Trusted by over 5,000 families across 150+ countries.</div>
+    </div>
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© 2026 Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">07</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 6: OUR GLOBAL PRESENCE ──────────────────────── -->
+  <div data-doc-page="" style="width: 794px; height: 1123px; margin: 0 auto; background: radial-gradient(1146px 1196px at 101.45% 0%, #000957 0%, #0F1A2D 100%); border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; padding: 56px; overflow: hidden;">
+
+    <div>
+      <img src="../../assets/logos/GCS-Primary-White.svg" style="height: 32px; width: auto;">
+    </div>
+
+    <div style="flex: 1;"></div>
+
+    <div style="margin-bottom: 44px;">
+      <div style="margin-bottom: 22px; line-height: 1.1;">
+        <span style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; color: #FFFFFF; letter-spacing: -0.5px;">Our Global </span><em style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 44px; color: #FFFFFF; letter-spacing: -0.5px;">Presence</em>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 400; color: rgb(168,179,205); line-height: 1.6; max-width: 520px; margin-bottom: 44px;">We operate globally, with teams supporting clients across different regions, both through local offices and dedicated contact points.</div>
+      <div style="margin-bottom: 10px; color: white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 13.671 15.338" fill="currentColor" style="display: block;"><path d="M 6.836 0 C 3.06 0 0 3.06 0 6.836 C 0 8.889 1.07 10.675 2.26 12.036 C 3.459 13.407 4.859 14.436 5.692 14.991 C 6.388 15.454 7.283 15.454 7.979 14.991 C 8.812 14.436 10.212 13.407 11.411 12.036 C 12.601 10.675 13.671 8.889 13.671 6.836 C 13.671 3.06 10.611 0 6.836 0 Z M 6.836 3.798 C 5.158 3.798 3.798 5.158 3.798 6.836 C 3.798 8.513 5.158 9.874 6.836 9.874 C 8.513 9.874 9.874 8.513 9.874 6.836 C 9.874 5.158 8.513 3.798 6.836 3.798 Z" fill-rule="evenodd"></path></svg>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 17px; font-weight: 400; color: #FFFFFF; line-height: 1.65; letter-spacing: 0.01em;">ANTIGUA AND BARBUDA | BRAZIL | DUBAI | GRENADA | ITALY | MALTA | PORTUGAL | SPAIN | ST. LUCIA | SWITZERLAND | TURKEY | UNITED KINGDOM | VANUATU</div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1);">
+      <div>
+        <a href="https://www.globalcitizensolutions.com" target="_blank" style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.2em; color: rgb(179,181,205); margin-bottom: 18px; text-decoration: none; display: block;">GLOBALCITIZENSOLUTIONS.COM</a>
+        <div style="display: flex; gap: 14px; align-items: center;">
+          <a href="https://www.linkedin.com/company/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg>
+          </a>
+          <a href="https://www.facebook.com/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"></path></svg>
+          </a>
+          <a href="https://www.instagram.com/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
+          </a>
+          <a href="https://beglobal.link/GCS-youtube" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg>
+          </a>
+          <a href="https://medium.com/global-citizen-solutions" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M4.285 7.269a.733.733 0 0 0-.24-.619l-1.77-2.133v-.32h5.498l4.25 9.32 3.736-9.32H21v.319l-1.515 1.451a.45.45 0 0 0-.168.425v10.666a.448.448 0 0 0 .168.425l1.479 1.451v.319h-7.436v-.319l1.529-1.487c.152-.15.152-.195.152-.424V8.401L10.95 19.218h-.575L5.417 8.401v7.233c-.041.305.06.612.275.833L7.48 18.7v.319H2v-.319l1.788-2.167a.964.964 0 0 0 .253-.833V7.269z"></path></svg>
+          </a>
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #FFFFFF; line-height: 1.6; margin-bottom: 8px;">Studio 5 Richmond Road, Kingston-Upon-Thames<br>KT2 5BX — United Kingdom</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #FFFFFF; line-height: 1.6;">+44 20 8068 3119<br>info@globalcitizensolutions.com</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 860, &quot;height&quot;: 1400},
+  &quot;title&quot;:       {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;The World's Top-Ranked&quot;},
+  &quot;titleItalic&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Passports in 2026.&quot;},
+  &quot;subtitle&quot;:    {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Insights from the Global Passport Index 2026&quot;},
+  &quot;eyebrow&quot;:     {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Global Passport Index 2026&quot;},
+  &quot;sectionTag&quot;:  {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Global Passport Index 2026&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      title:       this.props.title       ?? "The World's Top-Ranked",
+      titleItalic: this.props.titleItalic ?? 'Passports in 2026.',
+      subtitle:    this.props.subtitle    ?? 'Insights from the Global Passport Index 2026',
+      eyebrow:     this.props.eyebrow     ?? 'Global Passport Index 2026',
+      sectionTag:  this.props.sectionTag  ?? 'Global Passport Index 2026',
+    };
+  }
+}
+</script>
+</body>
+</html>

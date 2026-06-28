@@ -1,0 +1,58 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Night Blue" subtitle="Primary brand palette — 6-step Night Blue scale" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); font-family: var(--font-sans); }
+  .row { display: flex; gap: 0; }
+  .swatch {
+    flex: 1;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8px 10px;
+  }
+  .label { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 1px; }
+  .hex   { font-size: 10px; font-family: var(--font-mono); opacity: 0.75; }
+  .meta  { display: flex; justify-content: space-between; margin-top: 12px; }
+  .meta-item { font-size: 11px; color: var(--muted-foreground); }
+  .meta-item strong { font-weight: 600; color: var(--foreground); }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="swatch" style="background: hsl(218 17% 92%); color: hsl(233 100% 17%);">
+    <span class="label">25</span>
+    <span class="hex">#E8EBF0</span>
+  </div>
+  <div class="swatch" style="background: hsl(233 22% 75%); color: hsl(233 100% 17%);">
+    <span class="label">50</span>
+    <span class="hex">#B3B5CD</span>
+  </div>
+  <div class="swatch" style="background: hsl(232 18% 59%); color: #fff;">
+    <span class="label">100</span>
+    <span class="hex">#8084AB</span>
+  </div>
+  <div class="swatch" style="background: hsl(233 41% 34%); color: #fff;">
+    <span class="label">200</span>
+    <span class="hex">#333A79</span>
+  </div>
+  <div class="swatch" style="background: hsl(233 60% 26%); color: #fff;">
+    <span class="label">300</span>
+    <span class="hex">#1A2268</span>
+  </div>
+  <div class="swatch" style="background: hsl(233 100% 17%); color: #fff; position:relative;">
+    <span style="position:absolute;top:8px;right:8px;font-size:9px;font-weight:700;letter-spacing:0.08em;opacity:0.6;color:#fff;">PRIMARY</span>
+    <span class="label">400</span>
+    <span class="hex">#000957</span>
+  </div>
+</div>
+<div class="meta">
+  <span class="meta-item"><strong>Night Blue</strong> — Primary brand color</span>
+  <span class="meta-item"><strong>var(--night-blue-25</strong> → <strong>--night-blue-400)</strong></span>
+</div>
+</body>
+</html>

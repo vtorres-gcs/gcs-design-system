@@ -1,0 +1,656 @@
+<!-- @dsCard group="Iconography" viewport="960x700" name="Icon Set" subtitle="Google Material Icons · 5 variants" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Icon Set — Material Icons</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../_ds_bundle.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--background);
+      color: var(--foreground);
+      padding: 28px 32px 48px;
+    }
+
+    .header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--night-blue-400);
+    }
+
+    .subtitle {
+      font-size: 11px;
+      letter-spacing: var(--tracking-widest);
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .search-wrap { position: relative; flex: 1; min-width: 200px; max-width: 340px; }
+
+    .search-ic {
+      position: absolute; left: 10px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted-foreground);
+      font-family: 'Material Icons';
+      font-size: 16px;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    input[type="search"] {
+      width: 100%;
+      padding: 7px 12px 7px 32px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--foreground);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      outline: none;
+    }
+    input[type="search"]:focus { border-color: var(--electric-blue-400); }
+
+    .seg {
+      display: flex;
+      border: 1px solid var(--border);
+    }
+
+    .seg-btn {
+      padding: 6px 11px;
+      font-size: 12px;
+      font-family: var(--font-sans);
+      background: var(--card);
+      color: var(--muted-foreground);
+      border: none;
+      border-right: 1px solid var(--border);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 120ms ease-out;
+    }
+    .seg-btn:last-child { border-right: none; }
+    .seg-btn.active, .seg-btn:hover {
+      background: var(--night-blue-400);
+      color: #fff;
+    }
+
+    .count {
+      font-size: 12px;
+      color: var(--muted-foreground);
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    .categories {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .cat-btn {
+      padding: 4px 10px;
+      font-size: 11px;
+      font-family: var(--font-sans);
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted-foreground);
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: all 120ms ease-out;
+    }
+    .cat-btn.active {
+      background: var(--night-blue-400);
+      color: #fff;
+      border-color: var(--night-blue-400);
+    }
+    .cat-btn:hover:not(.active) { border-color: var(--electric-blue-400); color: var(--electric-blue-400); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+      gap: 2px;
+    }
+
+    .icon-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      padding: 14px 6px 10px;
+      background: var(--card);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: border-color 120ms, background 120ms;
+    }
+    .icon-cell:hover { border-color: var(--electric-blue-400); background: hsl(216 100% 97%); }
+    .icon-cell.copied { border-color: #16a34a; background: hsl(142 60% 96%); }
+
+    .icon-glyph {
+      line-height: 1;
+      display: block;
+      color: var(--night-blue-400);
+      user-select: none;
+    }
+
+    .icon-label {
+      font-size: 9.5px;
+      font-family: var(--font-mono);
+      color: var(--muted-foreground);
+      text-align: center;
+      word-break: break-all;
+      line-height: 1.3;
+    }
+    .icon-cell:hover .icon-label { color: var(--electric-blue-400); }
+
+    .empty {
+      grid-column: 1/-1;
+      padding: 56px;
+      text-align: center;
+      color: var(--muted-foreground);
+      font-size: 14px;
+    }
+
+    .toast {
+      position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: var(--night-blue-400);
+      color: #fff;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      padding: 7px 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms, transform 180ms;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Material Icons</h1>
+  <span class="subtitle">Google · Apache 2.0 · 15 categories · 900+ icons</span>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-ic">search</span>
+    <input type="search" id="search" placeholder="Search icons…" autocomplete="off">
+  </div>
+
+  <div class="seg" id="variants">
+    <button class="seg-btn active" data-v="material-icons">Filled</button>
+    <button class="seg-btn" data-v="material-icons-outlined">Outlined</button>
+    <button class="seg-btn" data-v="material-icons-round">Round</button>
+    <button class="seg-btn" data-v="material-icons-sharp">Sharp</button>
+    <button class="seg-btn" data-v="material-icons-two-tone">Two Tone</button>
+  </div>
+
+  <div class="seg" id="sizes">
+    <button class="seg-btn" data-sz="16">16</button>
+    <button class="seg-btn active" data-sz="24">24</button>
+    <button class="seg-btn" data-sz="32">32</button>
+  </div>
+
+  <span class="count" id="count"></span>
+</div>
+
+<div class="categories" id="cats"></div>
+<div class="grid" id="grid"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+// Curated icon set grouped by category
+const ICONS = {
+  'Action': [
+    'home','dashboard','search','settings','info','help','help_outline',
+    'favorite','favorite_border','star','star_border','star_half',
+    'check_circle','cancel','warning','error','delete','delete_forever',
+    'lock','lock_open','visibility','visibility_off','done','done_all',
+    'print','share','bookmark','bookmark_border','bookmarks',
+    'thumb_up','thumb_down','shopping_cart','payment','grade',
+    'toggle_on','toggle_off','zoom_in','zoom_out','open_in_new',
+    'launch','filter_list','sort','swap_vert','compare_arrows',
+    'accessibility','account_balance','account_balance_wallet',
+    'build','code','copyright','event_seat','gavel','history',
+    'label','language','record_voice_over','schedule','subject',
+    'supervisor_account','timeline','work','verified_user',
+    'add','remove','edit','more_vert','more_horiz','refresh',
+    'close','menu','arrow_back','arrow_forward','check',
+  ],
+  'Business': [
+    'business','business_center','work','work_history','work_off',
+    'account_balance','account_balance_wallet','account_box',
+    'trending_up','trending_down','trending_flat',
+    'bar_chart','show_chart','pie_chart','leaderboard','stacked_bar_chart',
+    'bubble_chart','area_chart','multiline_chart','waterfall_chart',
+    'analytics','assessment','insights','query_stats',
+    'attach_money','money','monetization_on','paid','savings',
+    'price_change','price_check','currency_exchange','percent',
+    'receipt','receipt_long','request_quote','invoice',
+    'article','description','assignment','assignment_turned_in',
+    'assignment_late','assignment_return','assignment_returned',
+    'fact_check','task','task_alt','checklist','checklist_rtl',
+    'approval','grading','rule','rule_folder','rate_review',
+    'handshake','groups','corporate_fare','domain','location_city',
+    'real_estate_agent','store','storefront','shopping_bag',
+    'inventory','inventory_2','category','label','new_label',
+    'local_offer','discount','sell','loyalty','card_membership',
+    'card_giftcard','redeem','celebration','campaign',
+    'co_present','contact_page','manage_accounts','badge',
+    'diversity_1','diversity_2','diversity_3','reduce_capacity',
+    'calendar_today','calendar_month','event','event_available',
+    'date_range','today','schedule','alarm','access_time',
+    'timelapse','timer','timer_off','av_timer','hourglass_empty',
+    'flag','outlined_flag','tour','announcement','feedback',
+    'question_answer','forum','mark_chat_read','mark_chat_unread',
+    'support_agent','headset_mic','contact_support',
+  ],
+  'Communicate': [
+    'email','phone','chat','message','send','inbox','drafts',
+    'call','call_end','call_made','call_missed','call_received',
+    'phone_in_talk','phone_callback','phone_disabled','phone_enabled',
+    'phone_iphone','smartphone','phone_android',
+    'contact_mail','contact_phone','contacts','import_contacts',
+    'notifications','notifications_active','notifications_none','notifications_off',
+    'notification_add','notification_important',
+    'forum','live_help','question_answer','mark_email_read',
+    'mark_email_unread','unsubscribe','mail_outline',
+    'textsms','sms','sms_failed','comment','mode_comment',
+    'chat_bubble','chat_bubble_outline','speaker_notes',
+    'speaker_notes_off','rate_review','reviews',
+    'ring_volume','rss_feed','voicemail','dialer_sip',
+    'video_call','video_chat','duo','voice_chat',
+    'wifi_calling','mobile_screen_share','screen_share',
+    'present_to_all','cast','cast_connected','portable_wifi_off',
+    'qr_code','qr_code_2','qr_code_scanner','share',
+    'reply','reply_all','forward','redo','undo',
+    'link','link_off','attach_file','attachment',
+    'alternate_email','add_ic_call','mark_chat_read',
+  ],
+  'Social': [
+    'person','people','group','group_add','groups','groups_2','groups_3',
+    'person_add','person_remove','person_off','person_search',
+    'account_circle','account_box','face','face_2','face_3',
+    'manage_accounts','admin_panel_settings','supervised_user_circle',
+    'how_to_reg','no_accounts','record_voice_over',
+    'mood','mood_bad','sentiment_satisfied','sentiment_dissatisfied',
+    'sentiment_very_satisfied','sentiment_very_dissatisfied',
+    'sentiment_neutral','emoji_emotions','emoji_people',
+    'emoji_flags','emoji_food_beverage','emoji_nature',
+    'emoji_objects','emoji_symbols','emoji_transportation',
+    'thumb_up','thumb_down','thumbs_up_down',
+    'favorite','favorite_border','heart_broken',
+    'share','public','language','travel_explore',
+    'whatshot','trending_up','star','grade','military_tech',
+    'school','local_library','menu_book','cast_for_education',
+    'celebration','cake','card_giftcard','redeem',
+    'volunteer_activism','handshake','diversity_1','diversity_2','diversity_3',
+    'connect_without_contact','reduce_capacity','social_distance',
+    'sports','sports_soccer','sports_basketball','sports_tennis',
+    'sports_esports','sports_golf','sports_handball','fitness_center',
+    'self_improvement','accessibility','accessible','elderly',
+    'child_care','family_restroom','pregnant_woman','wc',
+    'poll','campaign','pages','tag_faces','party_mode',
+  ],
+  'Travel': [
+    'flight','flight_land','flight_takeoff','airplane_ticket',
+    'connecting_airports','travel_explore','map','navigation',
+    'explore','directions','directions_car','directions_walk',
+    'directions_run','directions_bike','directions_bus',
+    'directions_subway','directions_railway','directions_boat',
+    'train','tram','subway','bus_alert','departure_board',
+    'local_airport','hotel','luggage','no_luggage',
+    'beach_access','pool','hot_tub','spa','deck',
+    'restaurant','local_dining','fastfood','coffee',
+    'local_bar','local_cafe','bakery_dining','brunch_dining',
+    'dinner_dining','lunch_dining','nightlife','wine_bar',
+    'local_hotel','meeting_room','no_meeting_room','do_not_disturb',
+    'king_bed','single_bed','bathtub','shower','elevator',
+    'stairs','escalator','ramp_left','ramp_right',
+    'hail','taxi_alert','two_wheeler','moped','electric_scooter',
+    'car_rental','car_repair','local_gas_station','ev_station',
+    'local_parking','local_shipping','delivery_dining',
+    'place','pin_drop','edit_location','add_location',
+    'person_pin','near_me','beenhere','where_to_vote',
+    'satellite','terrain','layers','layers_clear',
+    'zoom_out_map','route','alt_route','roundabout_right',
+    'currency_exchange','atm','money','attach_money',
+    'flag','language','public','vpn_lock',
+    'globe','tour','hiking','nordic_walking',
+  ],
+  'Activities': [
+    'sports','sports_soccer','sports_basketball','sports_baseball',
+    'sports_football','sports_volleyball','sports_tennis',
+    'sports_golf','sports_cricket','sports_hockey','sports_rugby',
+    'sports_handball','sports_kabaddi','sports_mma','sports_martial_arts',
+    'sports_esports','sports_motorsports','sports_score',
+    'fitness_center','self_improvement','pool','surfing',
+    'kitesurfing','rowing','kayaking','sailing','scuba_diving',
+    'skateboarding','snowboarding','skiing','sledding','ice_skating',
+    'hiking','nordic_walking','paragliding','hang_gliding',
+    'directions_bike','electric_bike','directions_run',
+    'directions_walk','wheelchair_pickup','accessible',
+    'catching_pokemon','piano','music_note','music_off',
+    'library_music','album','queue_music','headphones',
+    'mic','mic_off','radio','podcasts','live_tv',
+    'movie','theaters','local_movies','videocam',
+    'palette','brush','draw','edit','create',
+    'auto_fix_high','texture','style','format_paint',
+    'casino','toys','extension','puzzle_piece',
+    'outdoor_grill','fireplace','camping','cabin',
+    'park','nature','forest','eco','grass',
+    'pets','cruelty_free','agriculture','yard',
+  ],
+  'Images': [
+    'image','photo','photo_camera','camera_alt','camera',
+    'photo_library','collections','photo_album','burst_mode',
+    'panorama','panorama_horizontal','panorama_vertical',
+    'panorama_wide_angle','panorama_fish_eye',
+    'crop','crop_free','crop_original','crop_square',
+    'crop_landscape','crop_portrait','crop_rotate',
+    'crop_3_2','crop_5_4','crop_7_5','crop_16_9',
+    'rotate_left','rotate_right','flip','flip_camera_android',
+    'rotate_90_degrees_ccw','rotate_90_degrees_cw',
+    'zoom_in','zoom_out','zoom_out_map',
+    'brightness_1','brightness_2','brightness_3','brightness_4',
+    'brightness_5','brightness_6','brightness_7',
+    'brightness_auto','brightness_high','brightness_low','brightness_medium',
+    'contrast','exposure','exposure_plus_1','exposure_plus_2',
+    'exposure_minus_1','exposure_minus_2','exposure_zero',
+    'wb_sunny','wb_cloudy','wb_auto','wb_incandescent',
+    'wb_iridescent','wb_shade','wb_twilight',
+    'filter','filter_1','filter_2','filter_3','filter_b_and_w',
+    'filter_center_focus','filter_drama','filter_frames',
+    'filter_hdr','filter_none','filter_tilt_shift','filter_vintage',
+    'gradient','grain','hdr_on','hdr_off','hdr_strong','hdr_weak',
+    'healing','image_search','image_aspect_ratio',
+    'lens','looks','looks_3','looks_4','looks_5','looks_6',
+    'looks_one','looks_two','loupe','monochrome_photos',
+    'motion_blur','movie_creation','movie_filter',
+    'music_note','nature','nature_people',
+    'remove_red_eye','slideshow','straighten','style',
+    'tag_faces','texture','timelapse','timer','timer_10','timer_3',
+    'tonality','transform','tune','view_comfy','view_compact',
+    'vignette','wb_fluorescent',
+  ],
+  'Privacy': [
+    'lock','lock_open','lock_person','lock_clock','lock_reset',
+    'shield','security','verified_user','admin_panel_settings',
+    'gpp_good','gpp_bad','gpp_maybe','private_connectivity',
+    'fingerprint','face_unlock','key','vpn_key','vpn_key_off',
+    'vpn_lock','no_encryption','enhanced_encryption',
+    'password','pattern','pin','token',
+    'visibility','visibility_off','remove_red_eye',
+    'preview','find_in_page','manage_search',
+    'policy','privacy_tip','cookie','data_usage',
+    'https','http','wifi_lock','wifi_password',
+    'share_location','location_off','location_disabled',
+    'portable_wifi_off','signal_wifi_off','signal_cellular_off',
+    'do_not_disturb','block','not_interested','hide_source',
+    'report','report_off','report_problem','flag',
+    'warning','error','dangerous','crisis_alert',
+    'verified','workspace_premium','new_releases','stars',
+  ],
+  'Household': [
+    'home','house','cottage','villa','apartment','other_houses',
+    'holiday_village','cabin','roofing','foundation',
+    'chair','chair_alt','table_bar','table_restaurant',
+    'bed','king_bed','single_bed','crib','night_shelter',
+    'bathtub','shower','hot_tub','plumbing','water_damage',
+    'countertops','kitchen','microwave','blender',
+    'coffee_maker','rice_bowl','soup_kitchen',
+    'dishwasher','local_laundry_service','dry_cleaning',
+    'iron','cleaning_services','mop','vacuum',
+    'light','lightbulb','lamp','highlight','night_shelter',
+    'fireplace','ac_unit','thermostat','heat_pump',
+    'hvac','sensor_window','sensor_door','window',
+    'door_back','door_front','door_sliding','garage',
+    'yard','deck','balcony','fence','grass','park',
+    'outdoor_grill','barbeque','spa','pool',
+    'security','camera_outdoor','camera_indoor','doorbell',
+    'lock','key','meeting_room','do_not_disturb','elevator',
+    'stairs','escalator','monitor','tv','router','wifi',
+    'electrical_services','power','power_off',
+    'battery_full','battery_charging_full','battery_alert',
+    'recycling','delete','compost','water','energy_savings_leaf',
+  ],
+  'Text': [
+    'text_fields','title','notes','short_text','wrap_text',
+    'format_align_left','format_align_right','format_align_center','format_align_justify',
+    'format_bold','format_italic','format_underlined','format_strikethrough',
+    'format_color_text','format_color_fill','format_color_reset',
+    'format_list_bulleted','format_list_numbered','format_list_numbered_rtl',
+    'format_indent_decrease','format_indent_increase',
+    'format_line_spacing','format_letter_spacing','format_paragraph',
+    'format_quote','format_size','format_textdirection_l_to_r',
+    'format_textdirection_r_to_l','format_clear','format_paint',
+    'text_format','text_rotate_up','text_rotate_vertical',
+    'text_rotation_angleup','text_rotation_angledown',
+    'text_rotation_down','text_rotation_none',
+    'font_download','font_download_off',
+    'spellcheck','abc','translate','g_translate',
+    'auto_fix_high','auto_fix_normal','auto_fix_off',
+    'border_all','border_bottom','border_clear','border_color',
+    'border_horizontal','border_inner','border_left',
+    'border_outer','border_right','border_style','border_top','border_vertical',
+    'functions','subscript','superscript','calculate',
+    'table_chart','table_rows','table_view','grid_on','grid_off',
+    'insert_chart','bar_chart','show_chart','pie_chart',
+    'horizontal_rule','strikethrough_s','code','data_object',
+    'data_array','schema','integration_instructions',
+    'history_edu','edit_note','draw','create',
+    'ink_eraser','highlight','comment','add_comment',
+    'mark_chat_read','speaker_notes','rate_review',
+  ],
+  'File': [
+    'folder','folder_open','folder_shared','folder_special',
+    'folder_zip','folder_copy','folder_delete','folder_off',
+    'create_new_folder','drive_file_move','drive_folder_upload',
+    'file_copy','file_download','file_upload','file_present',
+    'file_open','file_download_done','file_download_off',
+    'upload','upload_file','download','download_done','download_for_offline',
+    'attachment','attach_file','attach_email',
+    'cloud','cloud_done','cloud_download','cloud_off',
+    'cloud_queue','cloud_upload','cloud_sync','cloud_circle',
+    'backup','restore','restore_page','source',
+    'description','article','text_snippet','topic','snippet_folder',
+    'note','notes','note_add','note_alt','sticky_note_2',
+    'edit_document','post_add','library_books','menu_book',
+    'archive','unarchive','inventory','inventory_2',
+    'compress','expand','save','save_as','save_alt',
+    'print','print_disabled','summarize','request_quote',
+  ],
+  'Navigation': [
+    'apps','menu','home','dashboard','explore','search',
+    'arrow_back','arrow_forward','arrow_upward','arrow_downward',
+    'arrow_back_ios','arrow_forward_ios','arrow_back_ios_new',
+    'arrow_drop_down','arrow_drop_up','arrow_drop_left','arrow_drop_right',
+    'arrow_left','arrow_right',
+    'chevron_left','chevron_right','expand_less','expand_more',
+    'first_page','last_page','navigate_before','navigate_next',
+    'fullscreen','fullscreen_exit','open_in_full','close_fullscreen',
+    'close','cancel','clear','check','done','done_all',
+    'more_horiz','more_vert','open_in_new','launch',
+    'refresh','sync','autorenew','cached','loop',
+    'swap_horiz','swap_vert','swap_horizontal_circle','swap_vertical_circle',
+    'unfold_less','unfold_more',
+    'subdirectory_arrow_left','subdirectory_arrow_right',
+    'keyboard_return','keyboard_backspace','keyboard_tab',
+    'keyboard_arrow_up','keyboard_arrow_down','keyboard_arrow_left','keyboard_arrow_right',
+    'east','west','north','south',
+    'north_east','north_west','south_east','south_west',
+    'pivot_table_chart','call_missed','call_missed_outgoing',
+  ],
+  'Finance': [
+    'account_balance','account_balance_wallet','savings',
+    'attach_money','money','monetization_on','paid','euro',
+    'currency_bitcoin','currency_dollar','currency_euro',
+    'currency_exchange','currency_franc','currency_lira',
+    'currency_pound','currency_ruble','currency_rupee',
+    'currency_yen','currency_yuan','money_off',
+    'price_change','price_check','sell','local_offer','discount',
+    'receipt','receipt_long','request_quote','invoice','calculate',
+    'bar_chart','show_chart','pie_chart','leaderboard',
+    'trending_up','trending_down','trending_flat',
+    'analytics','assessment','insights','query_stats',
+    'percent','functions','data_usage',
+    'credit_card','credit_score','credit_card_off',
+    'payment','payments','point_of_sale','contactless',
+    'qr_code','qr_code_2','barcode','barcode_scanner',
+    'shopping_cart','shopping_bag','store','storefront',
+    'card_giftcard','redeem','loyalty','card_membership',
+    'real_estate_agent','apartment','domain','business',
+    'work','business_center','handshake','volunteer_activism',
+  ],
+  'Identity': [
+    'person','account_circle','account_box','face',
+    'admin_panel_settings','badge','contact_page',
+    'fingerprint','how_to_reg','manage_accounts',
+    'no_accounts','perm_identity','portrait',
+    'security','shield','verified','verified_user',
+    'lock','lock_person','gpp_good','gpp_bad',
+    'key','vpn_key','password','pin','token',
+    'assignment_ind','supervisor_account','record_voice_over',
+    'group','people','contacts','import_contacts',
+  ],
+  'Maps': [
+    'add_location','beenhere','category','directions','directions_car',
+    'directions_walk','edit_location','explore','flight','hotel',
+    'layers','local_airport','local_atm','local_hospital','local_offer',
+    'local_shipping','location_on','map','my_location','navigation',
+    'near_me','person_pin','pin_drop','place','restaurant',
+    'satellite','store','terrain','traffic','zoom_out_map',
+    'flight_land','flight_takeoff','travel_explore','route',
+  ],
+};
+
+const ALL_CATS = Object.keys(ICONS);
+let currentCat = 'All';
+let currentVariant = 'material-icons';
+let currentSize = 24;
+
+function getFiltered(q) {
+  let pool = currentCat === 'All'
+    ? Object.values(ICONS).flat()
+    : ICONS[currentCat] || [];
+  // Dedupe
+  pool = [...new Set(pool)];
+  if (!q) return pool;
+  const lq = q.toLowerCase();
+  return pool.filter(n => n.includes(lq));
+}
+
+// Build category buttons
+const catsEl = document.getElementById('cats');
+['All', ...ALL_CATS].forEach(cat => {
+  const btn = document.createElement('button');
+  btn.className = 'cat-btn' + (cat === 'All' ? ' active' : '');
+  btn.textContent = cat;
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentCat = cat;
+    render(document.getElementById('search').value);
+  });
+  catsEl.appendChild(btn);
+});
+
+function render(q = '') {
+  const icons = getFiltered(q.trim().toLowerCase());
+  const grid = document.getElementById('grid');
+  const count = document.getElementById('count');
+  count.textContent = `${icons.length} icon${icons.length !== 1 ? 's' : ''}`;
+  grid.innerHTML = '';
+
+  if (!icons.length) {
+    grid.innerHTML = '<div class="empty">No icons match your search.</div>';
+    return;
+  }
+
+  const frag = document.createDocumentFragment();
+  icons.forEach(name => {
+    const cell = document.createElement('div');
+    cell.className = 'icon-cell';
+    cell.title = name;
+
+    const glyph = document.createElement('span');
+    glyph.className = `icon-glyph ${currentVariant}`;
+    glyph.style.fontSize = currentSize + 'px';
+    glyph.textContent = name;
+    cell.appendChild(glyph);
+
+    const label = document.createElement('div');
+    label.className = 'icon-label';
+    label.textContent = name;
+    cell.appendChild(label);
+
+    cell.addEventListener('click', () => {
+      navigator.clipboard.writeText(name).then(() => {
+        showToast(`Copied "${name}"`);
+        cell.classList.add('copied');
+        setTimeout(() => cell.classList.remove('copied'), 1100);
+      });
+    });
+
+    frag.appendChild(cell);
+  });
+  grid.appendChild(frag);
+}
+
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+// Search
+document.getElementById('search').addEventListener('input', e => render(e.target.value));
+
+// Variant
+document.getElementById('variants').addEventListener('click', e => {
+  const btn = e.target.closest('.seg-btn');
+  if (!btn) return;
+  document.querySelectorAll('#variants .seg-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentVariant = btn.dataset.v;
+  document.querySelectorAll('.icon-glyph').forEach(g => {
+    g.className = `icon-glyph ${currentVariant}`;
+  });
+});
+
+// Size
+document.getElementById('sizes').addEventListener('click', e => {
+  const btn = e.target.closest('.seg-btn');
+  if (!btn) return;
+  document.querySelectorAll('#sizes .seg-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentSize = parseInt(btn.dataset.sz, 10);
+  document.querySelectorAll('.icon-glyph').forEach(g => {
+    g.style.fontSize = currentSize + 'px';
+  });
+});
+
+render();
+</script>
+</body>
+</html>

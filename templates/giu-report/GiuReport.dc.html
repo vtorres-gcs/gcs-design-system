@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="GIU Report" description="A4 Global Intelligence Unit report — cover, TOC, overview, rankings table, regional analysis, program spotlight, CTA, global presence" -->
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yrsa:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="./ds-base.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@page { size: 210mm 297mm; margin: 0; }
+@media print {
+  html, body { margin: 0 !important; padding: 0 !important; }
+  [data-doc-wrapper] { background: none !important; padding: 0 !important; min-height: unset !important; }
+  [data-doc-page] {
+    margin: 0 !important; box-shadow: none !important; border-radius: 0 !important;
+    page-break-after: always; break-after: page;
+    width: 210mm !important; height: 297mm !important;
+    min-height: unset !important; overflow: hidden !important; position: relative !important;
+  }
+  [data-doc-page]:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</helmet>
+
+<div data-doc-wrapper="" style="background: #DDE0E8; padding: 40px 24px; min-height: 100vh; font-family: 'Heebo', 'Helvetica Neue', sans-serif;">
+
+  <!-- ── PAGE 1: COVER ─────────────────────────────────────── -->
+  <div data-doc-page="" data-screen-label="01 Cover" style="width: 794px; height: 1123px; margin: 0 auto 32px; border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; overflow: hidden; position: relative; background: #000B2E;">
+    <img src="./background-cover.png" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0;">
+    <!-- Dark gradient overlay for text legibility -->
+    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,9,87,0.92) 0%, rgba(0,9,87,0.3) 55%, transparent 100%); z-index: 1;"></div>
+
+    <!-- Logo top-left -->
+    <div style="position: relative; z-index: 2; padding: 48px 56px 0; display: flex; justify-content: space-between; align-items: flex-start;">
+      <img src="../../assets/logos/GCS-Symbol-White.svg" style="width: 42px; height: 42px;">
+      <img src="../../uploads/Global Intelligence Unit-White.svg" style="height: 13px; width: auto;">
+    </div>
+
+    <!-- Bottom text block -->
+    <div style="position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 56px 64px;">
+      <!-- Eyebrow -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 20px;">{{ eyebrow }}</div>
+
+      <!-- Title -->
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 64px; color: #FFFFFF; line-height: 1.06; letter-spacing: -1.5px;">{{ coverTitleLine1 }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 64px; color: #B3B5CD; line-height: 1.06; letter-spacing: -1.5px; margin-bottom: 36px;">{{ coverTitleLine2 }}</div>
+
+      <!-- Divider -->
+      <div style="width: 48px; height: 1px; background: rgba(255,255,255,0.25); margin-bottom: 28px;"></div>
+
+      <!-- Subtitle -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.65; max-width: 480px;">{{ coverSubtitle }}</div>
+    </div>
+  </div>
+
+  <!-- ── PAGE 2: TABLE OF CONTENTS ─────────────────────────── -->
+  <div data-doc-page="" data-screen-label="02 Table of Contents" style="width: 794px; height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <!-- Header -->
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">Contents</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 64px; flex-shrink: 0;"></div>
+
+    <div style="padding: 56px 64px; flex: 1; display: flex; flex-direction: column;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">In This Report</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 42px; color: #16182A; line-height: 1.08; letter-spacing: -0.8px; margin-bottom: 52px;">What's Inside</div>
+
+      <!-- TOC items -->
+      <div style="display: flex; flex-direction: column; gap: 0;">
+
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 20px 0; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">01</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Overview &amp; Key Findings</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Global landscape, methodology and top-level insights</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #CACCD8; letter-spacing: 0.06em;">03</div>
+        </div>
+
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 20px 0; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">02</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Top Programs Ranked</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Comparative ranking of the world's leading citizenship programs</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #CACCD8; letter-spacing: 0.06em;">04</div>
+        </div>
+
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 20px 0; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">03</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Regional Analysis</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Caribbean, European and Pacific program developments</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #CACCD8; letter-spacing: 0.06em;">05</div>
+        </div>
+
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 20px 0; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">04</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Program in Focus</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">In-depth analysis of the editor's top-rated program</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #CACCD8; letter-spacing: 0.06em;">06</div>
+        </div>
+
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 20px 0; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">05</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Key Trends &amp; Outlook</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Regulatory shifts, demand drivers and what to expect in 2027</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #CACCD8; letter-spacing: 0.06em;">07</div>
+        </div>
+
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 20px 0; border-top: 1px solid #ECEDF5; border-bottom: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">06</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">How GCS Can Help</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Expert guidance through every stage of your journey</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #CACCD8; letter-spacing: 0.06em;">08</div>
+        </div>
+
+      </div>
+
+      <!-- About GIU label -->
+      <div style="margin-top: auto; padding-top: 48px; display: flex; gap: 18px; align-items: flex-start;">
+        <div style="width: 3px; flex-shrink: 0; background: #3D51E8; border-radius: 2px; align-self: stretch;"></div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #000957; margin-bottom: 6px;">About the Global Intelligence Unit</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #6F7185; line-height: 1.75;">{{ aboutGiu }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">02</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 3: OVERVIEW & KEY FINDINGS ───────────────────── -->
+  <div data-doc-page="" data-screen-label="03 Overview" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">01 · Overview &amp; Key Findings</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 64px; flex-shrink: 0;"></div>
+
+    <div style="padding: 52px 64px 0; flex-shrink: 0;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 14px;">Overview</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; color: #16182A; line-height: 1.05; letter-spacing: -1px; margin-bottom: 32px;">{{ overviewHeading }}</div>
+
+      <div style="font-family: 'Yrsa', serif; font-size: 21px; font-weight: 400; color: #252839; line-height: 1.6; margin-bottom: 26px; letter-spacing: -0.2px;">{{ overviewLead }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #4B4E65; line-height: 1.85; margin-bottom: 18px;">{{ overviewBody1 }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #4B4E65; line-height: 1.85; margin-bottom: 44px;">{{ overviewBody2 }}</div>
+    </div>
+
+    <!-- Key findings strip -->
+    <div style="margin: 0 64px; flex-shrink: 0; background: #000957; border-radius: 6px; display: flex; overflow: hidden;">
+      <div style="flex: 1; padding: 26px 24px; border-right: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">{{ stat1Value }}</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);">{{ stat1Label }}</div>
+      </div>
+      <div style="flex: 1; padding: 26px 24px; border-right: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">{{ stat2Value }}</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);">{{ stat2Label }}</div>
+      </div>
+      <div style="flex: 1; padding: 26px 24px; border-right: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">{{ stat3Value }}</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);">{{ stat3Label }}</div>
+      </div>
+      <div style="flex: 1; padding: 26px 24px;">
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">{{ stat4Value }}</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);">{{ stat4Label }}</div>
+      </div>
+    </div>
+
+    <div style="flex: 1;"></div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">03</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 4: TOP PROGRAMS RANKED ───────────────────────── -->
+  <div data-doc-page="" data-screen-label="04 Rankings" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">02 · Top Programs Ranked</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 64px; flex-shrink: 0;"></div>
+
+    <div style="padding: 48px 64px; flex: 1; display: flex; flex-direction: column;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">Rankings</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #16182A; line-height: 1.08; letter-spacing: -0.7px; margin-bottom: 8px;">{{ rankingsHeading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #6F7185; margin-bottom: 30px; line-height: 1.65;">{{ rankingsSubtitle }}</div>
+
+      <!-- Rankings table -->
+      <div style="border: 1px solid #ECEDF5; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column;">
+        <!-- Table header -->
+        <div style="display: grid; grid-template-columns: 40px 2fr 1fr 1fr 1fr; background: #000957; flex-shrink: 0;">
+          <div style="padding: 13px 16px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35);">#</div>
+          <div style="padding: 13px 16px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45);">Program</div>
+          <div style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); border-left: 1px solid rgba(255,255,255,0.08);">Min. Investment</div>
+          <div style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); border-left: 1px solid rgba(255,255,255,0.08);">Timeline</div>
+          <div style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); border-left: 1px solid rgba(255,255,255,0.08);">GCS Score</div>
+        </div>
+
+        <!-- Rank 1 — highlighted -->
+        <div style="display: grid; grid-template-columns: 40px 2fr 1fr 1fr 1fr; border-top: 1px solid #ECEDF5; background: #F2F3FE;">
+          <div style="padding: 18px 16px; display: flex; align-items: center; justify-content: center;">
+            <div style="width: 24px; height: 24px; border-radius: 50%; background: #000957; display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 700; color: #FFFFFF;">1</span>
+            </div>
+          </div>
+          <div style="padding: 18px 16px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #000957; margin-bottom: 2px;">{{ r1Program }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD;">{{ r1Region }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A;">{{ r1Investment }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65;">{{ r1Timeline }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #ECEDF5; display: flex; align-items: center; gap: 8px;">
+            <div style="font-family: 'Yrsa', serif; font-size: 22px; font-weight: 400; color: #000957;">{{ r1Score }}</div>
+            <div style="background: #000957; color: white; font-family: 'Heebo', sans-serif; font-size: 8px; font-weight: 700; letter-spacing: 0.1em; padding: 3px 8px; border-radius: 2px; text-transform: uppercase;">Top Pick</div>
+          </div>
+        </div>
+
+        <!-- Rank 2 -->
+        <div style="display: grid; grid-template-columns: 40px 2fr 1fr 1fr 1fr; border-top: 1px solid #ECEDF5;">
+          <div style="padding: 18px 16px; display: flex; align-items: center; justify-content: center;">
+            <span style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 500; color: #9B9CAD;">2</span>
+          </div>
+          <div style="padding: 18px 16px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ r2Program }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD;">{{ r2Region }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #16182A;">{{ r2Investment }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65;">{{ r2Timeline }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div style="font-family: 'Yrsa', serif; font-size: 22px; font-weight: 400; color: #3D51E8;">{{ r2Score }}</div>
+          </div>
+        </div>
+
+        <!-- Rank 3 -->
+        <div style="display: grid; grid-template-columns: 40px 2fr 1fr 1fr 1fr; border-top: 1px solid #ECEDF5; background: #FAFBFF;">
+          <div style="padding: 18px 16px; display: flex; align-items: center; justify-content: center;">
+            <span style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 500; color: #9B9CAD;">3</span>
+          </div>
+          <div style="padding: 18px 16px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ r3Program }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD;">{{ r3Region }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #16182A;">{{ r3Investment }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65;">{{ r3Timeline }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div style="font-family: 'Yrsa', serif; font-size: 22px; font-weight: 400; color: #3D51E8;">{{ r3Score }}</div>
+          </div>
+        </div>
+
+        <!-- Rank 4 -->
+        <div style="display: grid; grid-template-columns: 40px 2fr 1fr 1fr 1fr; border-top: 1px solid #ECEDF5;">
+          <div style="padding: 18px 16px; display: flex; align-items: center; justify-content: center;">
+            <span style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 500; color: #9B9CAD;">4</span>
+          </div>
+          <div style="padding: 18px 16px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ r4Program }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD;">{{ r4Region }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #16182A;">{{ r4Investment }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65;">{{ r4Timeline }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div style="font-family: 'Yrsa', serif; font-size: 22px; font-weight: 400; color: #3D51E8;">{{ r4Score }}</div>
+          </div>
+        </div>
+
+        <!-- Rank 5 -->
+        <div style="display: grid; grid-template-columns: 40px 2fr 1fr 1fr 1fr; border-top: 1px solid #ECEDF5; background: #FAFBFF;">
+          <div style="padding: 18px 16px; display: flex; align-items: center; justify-content: center;">
+            <span style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 500; color: #9B9CAD;">5</span>
+          </div>
+          <div style="padding: 18px 16px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ r5Program }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD;">{{ r5Region }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #16182A;">{{ r5Investment }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65;">{{ r5Timeline }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #ECEDF5; display: flex; align-items: center;">
+            <div style="font-family: 'Yrsa', serif; font-size: 22px; font-weight: 400; color: #3D51E8;">{{ r5Score }}</div>
+          </div>
+        </div>
+
+        <!-- Rank 6 -->
+        <div style="display: grid; grid-template-columns: 40px 2fr 1fr 1fr 1fr; border-top: 1px solid #ECEDF5;">
+          <div style="padding: 18px 16px; display: flex; align-items: center; justify-content: center;">
+            <span style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 500; color: #9B9CAD;">6</span>
+          </div>
+          <div style="padding: 18px 16px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ r6Program }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD;">{{ r6Region }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #16182A;">{{ r6Investment }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65;">{{ r6Timeline }}</div>
+          </div>
+          <div style="padding: 18px 14px; border-left: 1px solid #F0F1F8; display: flex; align-items: center;">
+            <div style="font-family: 'Yrsa', serif; font-size: 22px; font-weight: 400; color: #3D51E8;">{{ r6Score }}</div>
+          </div>
+        </div>
+
+        <div style="padding: 14px 22px; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-style: italic; color: #C6C8D5; line-height: 1.65;">{{ rankingsDisclaimer }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">04</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 5: REGIONAL ANALYSIS ─────────────────────────── -->
+  <div data-doc-page="" data-screen-label="05 Regional Analysis" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">03 · Regional Analysis</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 64px; flex-shrink: 0;"></div>
+
+    <div style="padding: 52px 64px; flex: 1; display: flex; flex-direction: column;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">Regional Analysis</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #16182A; line-height: 1.08; letter-spacing: -0.8px; margin-bottom: 44px;">{{ regionalHeading }}</div>
+
+      <!-- Three regions -->
+      <div style="display: flex; flex-direction: column; gap: 0;">
+
+        <!-- Caribbean -->
+        <div style="padding: 28px 0; border-top: 1px solid #ECEDF5; display: flex; gap: 40px; align-items: flex-start;">
+          <div style="width: 160px; flex-shrink: 0;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #3D51E8; margin-bottom: 6px;">Caribbean</div>
+            <div style="font-family: 'Yrsa', serif; font-size: 28px; font-weight: 400; color: #000957; line-height: 1.1; margin-bottom: 8px;">{{ caribbeanStat }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 300; color: #9B9CAD; line-height: 1.5;">{{ caribbeanStatLabel }}</div>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 8px; line-height: 1.4;">{{ caribbeanHeading }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.85;">{{ caribbeanBody }}</div>
+          </div>
+        </div>
+
+        <!-- Europe -->
+        <div style="padding: 28px 0; border-top: 1px solid #ECEDF5; display: flex; gap: 40px; align-items: flex-start;">
+          <div style="width: 160px; flex-shrink: 0;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #3D51E8; margin-bottom: 6px;">Europe</div>
+            <div style="font-family: 'Yrsa', serif; font-size: 28px; font-weight: 400; color: #000957; line-height: 1.1; margin-bottom: 8px;">{{ europeStat }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 300; color: #9B9CAD; line-height: 1.5;">{{ europeStatLabel }}</div>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 8px; line-height: 1.4;">{{ europeHeading }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.85;">{{ europeBody }}</div>
+          </div>
+        </div>
+
+        <!-- Pacific -->
+        <div style="padding: 28px 0; border-top: 1px solid #ECEDF5; border-bottom: 1px solid #ECEDF5; display: flex; gap: 40px; align-items: flex-start;">
+          <div style="width: 160px; flex-shrink: 0;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #3D51E8; margin-bottom: 6px;">Pacific</div>
+            <div style="font-family: 'Yrsa', serif; font-size: 28px; font-weight: 400; color: #000957; line-height: 1.1; margin-bottom: 8px;">{{ pacificStat }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 300; color: #9B9CAD; line-height: 1.5;">{{ pacificStatLabel }}</div>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 8px; line-height: 1.4;">{{ pacificHeading }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.85;">{{ pacificBody }}</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">05</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 6: PROGRAM IN FOCUS ──────────────────────────── -->
+  <div data-doc-page="" data-screen-label="06 Program in Focus" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">04 · Program in Focus</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 64px; flex-shrink: 0;"></div>
+
+    <div style="padding: 52px 64px; flex: 1; display: flex; gap: 48px; align-items: flex-start;">
+      <!-- Main content -->
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 6px;">{{ focusEyebrow }}</div>
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #16182A; line-height: 1.08; letter-spacing: -0.8px; margin-bottom: 28px;">{{ focusHeading }}</div>
+
+        <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #4B4E65; line-height: 1.85; margin-bottom: 20px;">{{ focusBody1 }}</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #4B4E65; line-height: 1.85; margin-bottom: 32px;">{{ focusBody2 }}</div>
+
+        <!-- Pull quote -->
+        <div style="border-left: 3px solid #3D51E8; padding: 16px 22px; background: #F2F3FE; border-radius: 0 4px 4px 0; margin-bottom: 32px;">
+          <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 20px; color: #000957; line-height: 1.45; margin-bottom: 8px;">"{{ focusPullQuote }}"</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #6F7185;">{{ focusPullQuoteSource }}</div>
+        </div>
+
+        <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #4B4E65; line-height: 1.85;">{{ focusBody3 }}</div>
+      </div>
+
+      <!-- Sidebar: key facts -->
+      <div style="width: 210px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 4px;">Key Facts</div>
+
+        <div style="background: #F7F8FD; border-radius: 4px; padding: 14px 16px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 4px;">GCS Score</div>
+          <div style="font-family: 'Yrsa', serif; font-size: 24px; color: #000957; font-weight: 400;">{{ focusScore }}</div>
+        </div>
+
+        <div style="background: #F7F8FD; border-radius: 4px; padding: 14px 16px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 4px;">Min. Investment</div>
+          <div style="font-family: 'Yrsa', serif; font-size: 20px; color: #000957; font-weight: 400;">{{ focusMinInvestment }}</div>
+        </div>
+
+        <div style="background: #F7F8FD; border-radius: 4px; padding: 14px 16px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 4px;">Processing Time</div>
+          <div style="font-family: 'Yrsa', serif; font-size: 20px; color: #000957; font-weight: 400;">{{ focusTimeline }}</div>
+        </div>
+
+        <div style="background: #F7F8FD; border-radius: 4px; padding: 14px 16px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 4px;">Visa-Free Access</div>
+          <div style="font-family: 'Yrsa', serif; font-size: 20px; color: #000957; font-weight: 400;">{{ focusVisaFree }}</div>
+        </div>
+
+        <div style="background: #F7F8FD; border-radius: 4px; padding: 14px 16px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 4px;">Family Included</div>
+          <div style="font-family: 'Yrsa', serif; font-size: 20px; color: #000957; font-weight: 400;">{{ focusFamily }}</div>
+        </div>
+
+        <div style="background: #000957; border-radius: 4px; padding: 14px 16px; margin-top: 6px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 4px;">GCS Verdict</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 300; color: #FFFFFF; line-height: 1.6;">{{ focusVerdict }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">06</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 7: KEY TRENDS & OUTLOOK ──────────────────────── -->
+  <div data-doc-page="" data-screen-label="07 Trends and Outlook" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">05 · Key Trends &amp; Outlook</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 64px; flex-shrink: 0;"></div>
+
+    <div style="padding: 52px 64px; flex: 1; display: flex; flex-direction: column;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">Trends &amp; Outlook</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #16182A; line-height: 1.08; letter-spacing: -0.8px; margin-bottom: 44px;">{{ trendsHeading }}</div>
+
+      <div style="display: flex; flex-direction: column; gap: 0;">
+
+        <div style="padding: 24px 0; border-top: 1px solid #ECEDF5; display: flex; gap: 24px; align-items: flex-start;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #F2F3FE; border: 1.5px solid #3D51E8; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <span style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 700; color: #3D51E8;">01</span>
+          </div>
+          <div style="flex: 1; padding-top: 6px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 8px;">{{ trend1Heading }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.8;">{{ trend1Body }}</div>
+          </div>
+        </div>
+
+        <div style="padding: 24px 0; border-top: 1px solid #ECEDF5; display: flex; gap: 24px; align-items: flex-start;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #F2F3FE; border: 1.5px solid #3D51E8; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <span style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 700; color: #3D51E8;">02</span>
+          </div>
+          <div style="flex: 1; padding-top: 6px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 8px;">{{ trend2Heading }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.8;">{{ trend2Body }}</div>
+          </div>
+        </div>
+
+        <div style="padding: 24px 0; border-top: 1px solid #ECEDF5; display: flex; gap: 24px; align-items: flex-start;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #F2F3FE; border: 1.5px solid #3D51E8; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <span style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 700; color: #3D51E8;">03</span>
+          </div>
+          <div style="flex: 1; padding-top: 6px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 8px;">{{ trend3Heading }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.8;">{{ trend3Body }}</div>
+          </div>
+        </div>
+
+        <div style="padding: 24px 0; border-top: 1px solid #ECEDF5; border-bottom: 1px solid #ECEDF5; display: flex; gap: 24px; align-items: flex-start;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #F2F3FE; border: 1.5px solid #3D51E8; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <span style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 700; color: #3D51E8;">04</span>
+          </div>
+          <div style="flex: 1; padding-top: 6px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 8px;">{{ trend4Heading }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.8;">{{ trend4Body }}</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Outlook note -->
+      <div style="margin-top: 36px; padding: 22px 26px; background: #000957; border-radius: 6px;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px;">2027 Outlook</div>
+        <div style="font-family: 'Yrsa', serif; font-size: 19px; font-style: italic; font-weight: 400; color: #FFFFFF; line-height: 1.55;">{{ outlookQuote }}</div>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">07</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 8: CTA / HOW GCS CAN HELP ────────────────────── -->
+  <div data-doc-page="" data-screen-label="08 CTA" style="width: 794px; height: 1123px; margin: 0 auto 32px; background: #000957; border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; padding: 64px; overflow: hidden; position: relative;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #3D51E8;"></div>
+    <div style="position: absolute; bottom: 0; right: 0; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(61,81,232,0.18) 0%, transparent 70%); pointer-events: none;"></div>
+
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: #3D51E8; margin-bottom: 24px;">06 · How GCS Can Help</div>
+
+      <div style="font-family: 'Yrsa', serif; font-weight: 300; font-size: 68px; color: #FFFFFF; line-height: 0.95; letter-spacing: -2px; margin-bottom: 8px;">Begin Your</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 68px; color: #B3B5CD; line-height: 0.95; letter-spacing: -2px; margin-bottom: 48px;">Journey.</div>
+
+      <div style="width: 48px; height: 1px; background: rgba(255,255,255,0.2); margin-bottom: 36px;"></div>
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 480px; margin-bottom: 48px;">{{ ctaBody }}</div>
+
+      <!-- Contact cards -->
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 18px; padding: 16px 22px; background: rgba(255,255,255,0.06); border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);">
+          <div style="width: 34px; height: 34px; border-radius: 50%; background: #3D51E8; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg>
+          </div>
+          <div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 2px;">Phone</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 400; color: #FFFFFF;">+44 20 8068 3119</div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 18px; padding: 16px 22px; background: rgba(255,255,255,0.06); border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);">
+          <div style="width: 34px; height: 34px; border-radius: 50%; background: #3D51E8; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+          </div>
+          <div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 2px;">Email</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 400; color: #FFFFFF;">info@globalcitizensolutions.com</div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 18px; padding: 16px 22px; background: rgba(255,255,255,0.06); border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);">
+          <div style="width: 34px; height: 34px; border-radius: 50%; background: #3D51E8; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
+          </div>
+          <div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 2px;">Website</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 400; color: #FFFFFF;">globalcitizensolutions.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: rgba(255,255,255,0.25);">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.08em;">08</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 9: GLOBAL PRESENCE (BACK COVER) ──────────────── -->
+  <div data-doc-page="" data-screen-label="09 Back Cover" style="width: 794px; height: 1123px; margin: 0 auto; background: radial-gradient(1146px 1196px at 101.45% 0%, #000957 0%, #0F1A2D 100%); border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; padding: 56px; overflow: hidden;">
+    <div>
+      <img src="../../assets/logos/GCS-Primary-White.svg" style="height: 32px; width: auto;">
+    </div>
+    <div style="flex: 1;"></div>
+    <div style="margin-bottom: 44px;">
+      <div style="margin-bottom: 22px; line-height: 1.08;">
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 68px; color: #FFFFFF; letter-spacing: -1.5px;">Our Global</div>
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 68px; color: #B3B5CD; letter-spacing: -1.5px;">Presence.</div>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 400; color: rgb(168,179,205); line-height: 1.6; max-width: 520px; margin-bottom: 44px;">We operate globally, with teams supporting clients across different regions, both through local offices and dedicated contact points.</div>
+      <div style="margin-bottom: 10px; color: white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 13.671 15.338" fill="currentColor" style="display: block;"><path d="M 6.836 0 C 3.06 0 0 3.06 0 6.836 C 0 8.889 1.07 10.675 2.26 12.036 C 3.459 13.407 4.859 14.436 5.692 14.991 C 6.388 15.454 7.283 15.454 7.979 14.991 C 8.812 14.436 10.212 13.407 11.411 12.036 C 12.601 10.675 13.671 8.889 13.671 6.836 C 13.671 3.06 10.611 0 6.836 0 Z M 6.836 3.798 C 5.158 3.798 3.798 5.158 3.798 6.836 C 3.798 8.513 5.158 9.874 6.836 9.874 C 8.513 9.874 9.874 8.513 9.874 6.836 C 9.874 5.158 8.513 3.798 6.836 3.798 Z" fill-rule="evenodd"></path></svg>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 17px; font-weight: 400; color: #FFFFFF; line-height: 1.65; letter-spacing: 0.01em;">ANTIGUA AND BARBUDA | BRAZIL | DUBAI | GRENADA | ITALY | MALTA | PORTUGAL | SPAIN | ST. LUCIA | SWITZERLAND | TURKEY | UNITED KINGDOM | VANUATU</div>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1);">
+      <div>
+        <a href="https://www.globalcitizensolutions.com" target="_blank" style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.2em; color: rgb(179,181,205); margin-bottom: 18px; text-decoration: none; display: block;">GLOBALCITIZENSOLUTIONS.COM</a>
+        <div style="display: flex; gap: 14px; align-items: center;">
+          <a href="https://www.linkedin.com/company/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg></a>
+          <a href="https://www.facebook.com/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"></path></svg></a>
+          <a href="https://www.instagram.com/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg></a>
+          <a href="https://beglobal.link/GCS-youtube" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg></a>
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #FFFFFF; line-height: 1.6; margin-bottom: 8px;">Studio 5 Richmond Road, Kingston-Upon-Thames<br>KT2 5BX — United Kingdom</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #FFFFFF; line-height: 1.6;">+44 20 8068 3119<br>info@globalcitizensolutions.com</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 860, &quot;height&quot;: 1400},
+  &quot;year&quot;:               {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;2026&quot;},
+  &quot;eyebrow&quot;:            {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Citizenship Programs Report · 2026&quot;},
+  &quot;coverTitleLine1&quot;:    {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;The World's Leading Citizenship&quot;},
+  &quot;coverTitleLine2&quot;:    {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Programs in 2026.&quot;},
+  &quot;coverSubtitle&quot;:      {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Insights from the 2026 Citizenship Programs Report&quot;},
+  &quot;overviewHeading&quot;:    {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;A Record Year for Citizenship by Investment&quot;},
+  &quot;stat1Value&quot;:         {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;12&quot;},
+  &quot;stat1Label&quot;:         {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Active programs assessed&quot;},
+  &quot;stat2Value&quot;:         {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;186+&quot;},
+  &quot;stat2Label&quot;:         {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Visa-free destinations (top programs)&quot;},
+  &quot;stat3Value&quot;:         {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;3–6 mo&quot;},
+  &quot;stat3Label&quot;:         {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Fastest processing time&quot;},
+  &quot;stat4Value&quot;:         {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;$100k&quot;},
+  &quot;stat4Label&quot;:         {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Lowest qualifying investment&quot;},
+  &quot;rankingsHeading&quot;:    {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;The World's Leading Citizenship Programs&quot;},
+  &quot;r1Program&quot;:          {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;St. Kitts &amp; Nevis CBI&quot;},
+  &quot;r1Score&quot;:            {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;9.2&quot;},
+  &quot;focusHeading&quot;:       {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;St. Kitts &amp; Nevis: The Gold Standard of CBI&quot;},
+  &quot;trendsHeading&quot;:      {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;What to Watch in 2026 and Beyond&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      year:               this.props.year              ?? '2026',
+
+      // Cover
+      eyebrow:            this.props.eyebrow           ?? 'Citizenship Programs Report · 2026',
+      coverTitleLine1:    this.props.coverTitleLine1   ?? 'The World\'s Leading Citizenship',
+      coverTitleLine2:    this.props.coverTitleLine2   ?? 'Programs in 2026.',
+      coverSubtitle:      this.props.coverSubtitle     ?? 'Insights from the 2026 Citizenship Programs Report — an independent analysis of the world\'s top citizenship by investment programs, ranked by quality, access, and long-term value.',
+
+      // TOC
+      aboutGiu:           this.props.aboutGiu          ?? 'The GCS Global Intelligence Unit produces independent research on global mobility, residency, and citizenship planning. Our analysis draws on publicly available program data, client insights, and expert assessments compiled by our in-house advisory team.',
+
+      // Overview
+      overviewHeading:    this.props.overviewHeading   ?? 'A Record Year for Citizenship by Investment',
+      overviewLead:       this.props.overviewLead      ?? '2026 marks a defining moment for the global citizenship by investment industry, as demand reaches unprecedented levels and program standards continue to evolve.',
+      overviewBody1:      this.props.overviewBody1     ?? 'Driven by geopolitical instability, tightening migration regulations, and growing awareness of the value of alternative citizenship, the global citizenship by investment market has expanded significantly. Our analysis identifies twelve active programs across four regions that meet GCS quality thresholds, down from fifteen in 2024 following program closures and suspensions.',
+      overviewBody2:      this.props.overviewBody2     ?? 'This report ranks each program across five dimensions: passport strength, investment terms, processing speed, due diligence standards, and long-term stability — giving prospective applicants and their advisors a clear, comparable picture of where each program stands.',
+
+      stat1Value:         this.props.stat1Value        ?? '12',
+      stat1Label:         this.props.stat1Label        ?? 'Active programs assessed',
+      stat2Value:         this.props.stat2Value        ?? '186+',
+      stat2Label:         this.props.stat2Label        ?? 'Visa-free destinations (top programs)',
+      stat3Value:         this.props.stat3Value        ?? '3–6 mo',
+      stat3Label:         this.props.stat3Label        ?? 'Fastest processing time',
+      stat4Value:         this.props.stat4Value        ?? '$100k',
+      stat4Label:         this.props.stat4Label        ?? 'Lowest qualifying investment',
+
+      // Rankings
+      rankingsHeading:    this.props.rankingsHeading   ?? 'The World\'s Leading Citizenship Programs',
+      rankingsSubtitle:   this.props.rankingsSubtitle  ?? 'Programs scored across passport strength, investment terms, processing speed, due diligence standards, and long-term program stability. GCS Score out of 10.',
+      rankingsDisclaimer: this.props.rankingsDisclaimer ?? 'GCS Score is a proprietary composite index. Investment figures are minimum qualifying amounts and subject to change. GCS recommends independent legal advice before proceeding.',
+
+      r1Program:          this.props.r1Program         ?? 'St. Kitts & Nevis CBI',
+      r1Region:           this.props.r1Region          ?? 'Caribbean',
+      r1Investment:       this.props.r1Investment      ?? '$250,000',
+      r1Timeline:         this.props.r1Timeline        ?? '3–4 months',
+      r1Score:            this.props.r1Score           ?? '9.2',
+
+      r2Program:          this.props.r2Program         ?? 'Malta CES',
+      r2Region:           this.props.r2Region          ?? 'Europe · EU',
+      r2Investment:       this.props.r2Investment      ?? '€600,000+',
+      r2Timeline:         this.props.r2Timeline        ?? '12–36 months',
+      r2Score:            this.props.r2Score           ?? '9.0',
+
+      r3Program:          this.props.r3Program         ?? 'Antigua & Barbuda CBI',
+      r3Region:           this.props.r3Region          ?? 'Caribbean',
+      r3Investment:       this.props.r3Investment      ?? '$230,000',
+      r3Timeline:         this.props.r3Timeline        ?? '3–6 months',
+      r3Score:            this.props.r3Score           ?? '8.7',
+
+      r4Program:          this.props.r4Program         ?? 'Grenada CBI',
+      r4Region:           this.props.r4Region          ?? 'Caribbean',
+      r4Investment:       this.props.r4Investment      ?? '$235,000',
+      r4Timeline:         this.props.r4Timeline        ?? '4–6 months',
+      r4Score:            this.props.r4Score           ?? '8.5',
+
+      r5Program:          this.props.r5Program         ?? 'St. Lucia CBI',
+      r5Region:           this.props.r5Region          ?? 'Caribbean',
+      r5Investment:       this.props.r5Investment      ?? '$240,000',
+      r5Timeline:         this.props.r5Timeline        ?? '3–6 months',
+      r5Score:            this.props.r5Score           ?? '8.3',
+
+      r6Program:          this.props.r6Program         ?? 'Vanuatu DSP',
+      r6Region:           this.props.r6Region          ?? 'Pacific',
+      r6Investment:       this.props.r6Investment      ?? '$130,000',
+      r6Timeline:         this.props.r6Timeline        ?? '30–60 days',
+      r6Score:            this.props.r6Score           ?? '7.8',
+
+      // Regional analysis
+      regionalHeading:    this.props.regionalHeading   ?? 'How Each Region Performed in 2026',
+
+      caribbeanStat:      this.props.caribbeanStat     ?? '5 programs',
+      caribbeanStatLabel: this.props.caribbeanStatLabel ?? 'active CBI programs',
+      caribbeanHeading:   this.props.caribbeanHeading  ?? 'The Caribbean Holds Its Ground',
+      caribbeanBody:      this.props.caribbeanBody     ?? 'Caribbean programs continue to lead on speed and accessibility. Harmonised due diligence standards across CARICOM member states have strengthened investor confidence, while competitive pricing and strong UK travel access keep the region the top choice for most applicants.',
+
+      europeStat:         this.props.europeStat        ?? '2 programs',
+      europeStatLabel:    this.props.europeStatLabel   ?? 'active European CBI programs',
+      europeHeading:      this.props.europeHeading     ?? 'Europe: High Value, Higher Bar',
+      europeBody:         this.props.europeBody        ?? 'Malta remains the gold standard for EU citizenship, offering one of the world\'s strongest passports after a rigorous 12–36 month process. European programs command higher investment thresholds but deliver unmatched mobility — full EU freedom of movement and access to 186+ visa-free destinations.',
+
+      pacificStat:        this.props.pacificStat       ?? '2 programs',
+      pacificStatLabel:   this.props.pacificStatLabel  ?? 'active Pacific CBI programs',
+      pacificHeading:     this.props.pacificHeading    ?? 'The Pacific: Speed as a Differentiator',
+      pacificBody:        this.props.pacificBody       ?? 'Vanuatu\'s Development Support Programme remains the world\'s fastest citizenship pathway, with approvals in as little as 30 days. While passport strength is more modest, the program attracts applicants for whom speed and privacy are paramount considerations.',
+
+      // Focus
+      focusEyebrow:       this.props.focusEyebrow      ?? 'Editor\'s Top Pick · 2026',
+      focusHeading:       this.props.focusHeading      ?? 'St. Kitts & Nevis: The Gold Standard of CBI',
+      focusBody1:         this.props.focusBody1        ?? 'Founded in 1984, the St. Kitts & Nevis Citizenship by Investment Programme is the world\'s oldest and most established CBI program. Continuously refined over four decades, it sets the benchmark against which all other programs are measured.',
+      focusBody2:         this.props.focusBody2        ?? 'The 2023 Sustainable Island State Contribution (SISC) option and the enhanced Accelerated Application Process — delivering citizenship in as little as 45 days — have modernised what was already the industry\'s most respected program. Applicants gain access to 157 countries visa-free, including the EU, UK, and Schengen Area.',
+      focusPullQuote:     this.props.focusPullQuote    ?? 'St. Kitts & Nevis offers a combination of credibility, speed, and passport quality that no other Caribbean program currently matches.',
+      focusPullQuoteSource: this.props.focusPullQuoteSource ?? '— GCS Global Intelligence Unit, 2026',
+      focusBody3:         this.props.focusBody3        ?? 'For most applicants seeking a reliable, well-regulated second citizenship at a competitive investment level, St. Kitts & Nevis remains our top-ranked program in 2026.',
+
+      focusScore:         this.props.focusScore        ?? '9.2 / 10',
+      focusMinInvestment: this.props.focusMinInvestment ?? '$250,000',
+      focusTimeline:      this.props.focusTimeline     ?? '45–120 days',
+      focusVisaFree:      this.props.focusVisaFree     ?? '157 countries',
+      focusFamily:        this.props.focusFamily       ?? 'Yes',
+      focusVerdict:       this.props.focusVerdict      ?? 'The world\'s most credible CBI program — our top-rated pick for 2026.',
+
+      // Trends
+      trendsHeading:      this.props.trendsHeading     ?? 'What to Watch in 2026 and Beyond',
+
+      trend1Heading:      this.props.trend1Heading     ?? 'Stricter Due Diligence Across All Regions',
+      trend1Body:         this.props.trend1Body        ?? 'International pressure from the OECD, FATF, and EU institutions has accelerated the adoption of multi-layer due diligence processes. Programs that invest in compliance infrastructure are gaining market share as advisors and applicants prioritise reputational safety.',
+
+      trend2Heading:      this.props.trend2Heading     ?? 'Rising Investment Thresholds',
+      trend2Body:         this.props.trend2Body        ?? 'Several programs have raised or are reviewing their minimum investment amounts in response to inflationary pressures and to position citizenship as a premium, credible product. Applicants considering entry in 2026 should act before further revisions take effect.',
+
+      trend3Heading:      this.props.trend3Heading     ?? 'Demand Shifting Toward EU Passports',
+      trend3Body:         this.props.trend3Body        ?? 'Growing demand for EU mobility rights — particularly from clients in the Middle East, Asia, and Latin America — is directing more enquiries toward Malta and European residency pathways. Waiting periods for Malta CES appointments have extended significantly.',
+
+      trend4Heading:      this.props.trend4Heading     ?? 'Digital Nomad Profiles Drive New Demand',
+      trend4Body:         this.props.trend4Body        ?? 'A new generation of internationally mobile professionals and entrepreneurs is entering the CBI market, drawn less by tax planning and more by genuine lifestyle flexibility. Programs offering fast processing and high visa-free access score best with this demographic.',
+
+      outlookQuote:       this.props.outlookQuote      ?? 'Investment migration is no longer a niche instrument for the ultra-wealthy — it is becoming a mainstream tool for the globally mobile professional class.',
+
+      // CTA
+      ctaBody:            this.props.ctaBody           ?? 'Our advisors guide you through the full program selection process — from initial assessment and jurisdiction comparison through to application submission and citizenship approval. Your first consultation is confidential and carries no obligation.',
+    };
+  }
+}
+</script>
+</body>
+</html>
