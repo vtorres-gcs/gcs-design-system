@@ -1,6 +1,6 @@
 # GCS Design System
 
-**Global Citizen Solutions** — Design Tokens, Components, and UI Kits.
+**Global Citizen Solutions** — Design Tokens, Components, Templates, and UI Kits.
 
 ---
 
@@ -10,9 +10,11 @@ Global Citizen Solutions (GCS) is an international advisory firm specialising in
 
 Representative programmes: Portugal Golden Visa, Greek Golden Visa, Malta CBI, Malta Permanent Residence Programme (MPRP), Caribbean CBI (St Kitts & Nevis, Dominica, Grenada, Antigua, St Lucia), and more.
 
+**GIU (Global Investor Uni)** is a related brand within the GCS ecosystem — its wordmark assets are included in this system.
+
 **Sources provided for this design system:**
 - `uploads/design-tokens.md` — design token definitions from the production Tailwind/React codebase (`src/index.css` and `tailwind.config.ts`)
-- Logo SVG files: primary, secondary, and symbol variants in Blue, Black, and White
+- Logo SVG files: GCS primary, secondary, and symbol variants in Blue, Black, and White; GIU wordmark in Blue, Black, and White
 
 No Figma access, codebase, or product screenshots were provided. This system is built from the design tokens document and brand logos. **Contact the GCS brand team for expanded access.**
 
@@ -146,74 +148,133 @@ Icons always use `currentColor` — they inherit text colour from their parent. 
 
 | Component | Export(s) | Description |
 |-----------|-----------|-------------|
-| Button | `Button` | Primary action element, 6 variants × 4 sizes, icon slots |
-| Badge | `Badge` | Inline status label, pill-shaped, 5 semantic variants |
+| Accordion | `Accordion`, `AccordionItem` | Collapsible disclosure sections, 200ms ease-out |
 | Avatar | `Avatar` | User thumbnail with initials fallback, deterministic colour |
+| Badge | `Badge` | Inline status label, pill-shaped, 5 semantic variants |
+| Button | `Button` | Primary action element, 6 variants × 4 sizes, icon slots |
+| Chart | `BarChart`, `LineChart`, `PieChart` | SVG data visualisation using Night Blue + Electric Blue palette; hover tooltips |
+| Icon | `Icon` | Thin wrapper for Lucide-compatible stroke icons, 4 size presets |
 | Tag | `Tag` | Filter/selection chip, optional dismiss |
-| Icon | `Icon` | Thin wrapper for Lucide-compatible stroke icons |
-| Accordion | `Accordion`, `AccordionItem` | Collapsible disclosure sections |
-| Chart | `BarChart`, `LineChart`, `PieChart` | SVG data visualisation using GCS Night Blue + Electric Blue palette; hover tooltips included |
+
+---
+
+## Templates
+
+Design Component templates for content production. Each template lives in its own folder under `templates/` and is consumed as a `.dc.html` starting point.
+
+| Template | Folder | Description |
+|----------|--------|-------------|
+| Case Study | `templates/case-study/` | Long-form client success story document |
+| GIU Calendar | `templates/giu-calendar/` | Global Investor Uni event/programme calendar |
+| GIU Report | `templates/giu-report/` | Global Investor Uni branded report document |
+| Google Ads — Landscape | `templates/google-ads-landscape/` | Display ad, landscape format |
+| Google Ads — Square | `templates/google-ads-square/` | Display ad, square format |
+| Lead Magnet | `templates/lead-magnet/` | Gated content / downloadable guide layout |
+| Meta Ads — Square | `templates/meta-ads-square/` | Social ad, 1:1 square format |
+| Meta Ads — Vertical | `templates/meta-ads-vertical/` | Social ad, 4:5 vertical format |
+| Quarterly Report | `templates/quarterly-report/` | Branded quarterly performance report |
+| Instagram Carousel | `templates/social-media/` | Multi-slide Instagram carousel (`InstagramCarousel.dc.html`) |
+
+---
+
+## UI Kits
+
+| Kit | Path | Description |
+|-----|------|-------------|
+| Client Portal | `ui_kits/client-portal/index.html` | Full interactive mockup of the GCS client-facing application — dashboard, application tracker, document upload, consultation booking |
 
 ---
 
 ## File Structure
 
 ```
-styles.css                       — Global CSS entry point (import this one file)
+styles.css                             — Global CSS entry point (imports all token files)
 tokens/
-  fonts.css                      — Google Fonts @import (replace with self-hosted files in production)
-  colors.css                     — Night Blue scale, Electric Blue scale, Star, semantic tokens (light + dark)
-  typography.css                 — Font families, letter-spacing, type scale utility classes
-  spacing.css                    — 4pt spacing scale + semantic gap/padding aliases
-  radius.css                     — Border radius scale (default 0rem)
-  shadows.css                    — Shadow elevation scale (light + dark mode)
-  animations.css                 — Easing functions, durations, keyframes, utility animation classes
+  fonts.css                            — Google Fonts @import (replace with self-hosted in production)
+  colors.css                           — Night Blue scale, Electric Blue scale, Star, semantic tokens (light + dark)
+  typography.css                       — Font families, letter-spacing, type scale utility classes
+  spacing.css                          — 4pt spacing scale + semantic gap/padding aliases
+  radius.css                           — Border radius scale (default 0rem)
+  shadows.css                          — Shadow elevation scale (light + dark mode)
+  animations.css                       — Easing functions, durations, keyframes, utility animation classes
 assets/
   logos/
-    GCS-Primary-Blue.svg         — Primary logo (symbol + wordmark), navy/blue, for light backgrounds
-    GCS-Primary-Black.svg        — Primary logo, all black, for light backgrounds
-    GCS-Primary-White.svg        — Primary logo, all white, for dark/navy backgrounds
-    GCS-Secondary-Blue.svg       — Wordmark only, blue
-    GCS-Secondary-Black.svg      — Wordmark only, black
-    GCS-Secondary-White.svg      — Wordmark only, white
-    GCS-Symbol-Blue.svg          — Starburst symbol only, navy
-    GCS-Symbol-Black.svg         — Starburst symbol only, black
-    GCS-Symbol-White.svg         — Starburst symbol only, white
-guidelines/                      — Foundation specimen cards (appear in Design System tab)
-  night-blue.card.html           — Night Blue palette (6-step scale)
-  electric-blue.card.html        — Electric Blue palette (7-step scale)
-  semantic-light.card.html       — Semantic tokens, light mode
-  semantic-dark.card.html        — Semantic tokens, dark mode
-  sidebar-palette.card.html      — Sidebar surface tokens
-  status-colors.card.html        — Star, success, warning, destructive, info
-  type-display.card.html         — Yrsa display headings (60–36px)
-  type-ui.card.html              — Heebo UI text (h3–body-small)
-  type-small.card.html           — Overline, caption, serif-lg, mono
-  type-families.card.html        — Font family specimens
-  spacing-scale.card.html        — 4pt spacing scale visual
-  spacing-in-use.card.html       — Spacing in button/card/input context
-  radius.card.html               — Border radius scale (0–full)
-  shadows.card.html              — Shadow elevation scale
-  brand-logo-primary.card.html   — Primary logo on 3 backgrounds
-  brand-wordmark.card.html       — Wordmark on 3 backgrounds
-  brand-symbol.card.html         — Symbol on 4 backgrounds
+    GCS-Primary-Blue.svg               — Primary logo (symbol + wordmark), navy/blue, for light backgrounds
+    GCS-Primary-Black.svg              — Primary logo, all black, for light backgrounds
+    GCS-Primary-White.svg              — Primary logo, all white, for dark/navy backgrounds
+    GCS-Secondary-Blue.svg             — Wordmark only, blue
+    GCS-Secondary-Black.svg            — Wordmark only, black
+    GCS-Secondary-White.svg            — Wordmark only, white
+    GCS-Symbol-Blue.svg                — Starburst symbol only, navy
+    GCS-Symbol-Black.svg               — Starburst symbol only, black
+    GCS-Symbol-White.svg               — Starburst symbol only, white
+    GIU-Wordmark-Blue.svg              — GIU brand wordmark, blue
+    GIU-Wordmark-Black.svg             — GIU brand wordmark, black
+    GIU-Wordmark-White.svg             — GIU brand wordmark, white
+guidelines/                            — Foundation specimen cards (visible in Design System tab)
+  night-blue.card.html                 — Night Blue palette (6-step scale)
+  electric-blue.card.html              — Electric Blue palette (7-step scale)
+  semantic-light.card.html             — Semantic tokens, light mode
+  semantic-dark.card.html              — Semantic tokens, dark mode
+  sidebar-palette.card.html            — Sidebar surface tokens
+  status-colors.card.html              — Star, success, warning, destructive, info
+  type-display.card.html               — Yrsa display headings (60–36px)
+  type-ui.card.html                    — Heebo UI text (h3–body-small)
+  type-small.card.html                 — Overline, caption, serif-lg, mono
+  type-families.card.html              — Font family specimens
+  spacing-scale.card.html              — 4pt spacing scale visual
+  spacing-in-use.card.html             — Spacing in button/card/input context
+  radius.card.html                     — Border radius scale (0–full)
+  shadows.card.html                    — Shadow elevation scale
+  icons.card.html                      — Lucide icon set with size specimens
+  brand-logo-primary.card.html         — Primary logo on 3 backgrounds
+  brand-wordmark.card.html             — Wordmark on 3 backgrounds
+  brand-symbol.card.html               — Symbol on 4 backgrounds
 components/
   core/
-    Button.jsx + .d.ts + .prompt.md    — Action button, 5 variants × 3 sizes
-    Badge.jsx + .d.ts + .prompt.md     — Inline status label, pill-shaped
+    Accordion.jsx + .d.ts              — Collapsible disclosure sections
     Avatar.jsx + .d.ts + .prompt.md    — User thumbnail, initials fallback, deterministic colour
-    Tag.jsx + .d.ts + .prompt.md       — Filter/selection chip, optional dismiss
+    Badge.jsx + .d.ts + .prompt.md     — Inline status label, pill-shaped
+    Button.jsx + .d.ts                 — Action button, 6 variants × 4 sizes
     Chart.jsx + .d.ts                  — Data visualisation: BarChart, LineChart, PieChart
+    Icon.jsx + .d.ts                   — Lucide-compatible stroke icon wrapper
+    Tag.jsx + .d.ts + .prompt.md       — Filter/selection chip, optional dismiss
+    accordion.card.html                — Accordion showcase card
     button.card.html                   — Button showcase card
     chart.card.html                    — Chart showcase card (bar · line · pie)
+templates/
+  case-study/                          — Case Study template
+  giu-calendar/                        — GIU Calendar template
+  giu-report/                          — GIU Report template
+  google-ads-landscape/                — Google Display Ad — landscape
+  google-ads-square/                   — Google Display Ad — square
+  lead-magnet/                         — Lead Magnet / downloadable guide
+  meta-ads-square/                     — Meta Ad — square (1:1)
+  meta-ads-vertical/                   — Meta Ad — vertical (4:5)
+  quarterly-report/                    — Quarterly Report template
+  social-media/                        — Instagram Carousel template
 ui_kits/
-  client-portal/
-    index.html                         — GCS client portal application mockup (interactive)
-SKILL.md                               — Agent skill definition for Claude Code
+  client-portal/index.html             — GCS client portal application mockup (interactive)
+SKILL.md                               — Agent skill definition for Claude Code / DC consumer projects
 ```
+
+---
+
+## Using This System in a Consumer Project
+
+When Claude Code or a DC consumer project binds to this design system, it will receive the compiled `_ds_bundle.js` and all component type definitions. Load the bundle once per page and access components via the `GCS` namespace:
+
+```html
+<script src="_ds/<folder>/_ds_bundle.js"></script>
+<script>
+  const { Button, Badge, Avatar, Tag, Icon, Accordion, AccordionItem, BarChart } = window.GCS;
+</script>
+```
+
+To use a template, copy the relevant `templates/<slug>/` folder into the consuming project and point `ds-base.js` at the bound `_ds/<folder>` path. Each template's entry DC (`<Slug>.dc.html`) is the only file that needs editing.
 
 ---
 
 ## Font Note
 
-Fonts are currently loaded from **Google Fonts** (`tokens/fonts.css`). For production use, self-host the font files and replace the `@import` with local `@font-face` declarations. Contact the GCS brand team for licensed font files (Heebo, Yrsa, JetBrains Mono are all commercially available via Google Fonts under the OFL licence).
+Fonts are currently loaded from **Google Fonts** (`tokens/fonts.css`). For production use, self-host the font files and replace the `@import` with local `@font-face` declarations. Contact the GCS brand team for licensed font files (Heebo, Yrsa, and JetBrains Mono are all commercially available under the OFL licence via Google Fonts).
