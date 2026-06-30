@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCS Family Office Services</title>
+  <meta name="description" content="For internationally mobile families whose affairs span jurisdictions and generations. GCS Family Office Services, Zug.">
+  <link rel="stylesheet" href="../styles.css">
+
+  <style>
+    /* ============================================================
+       Landing Page Styles — GCS Family Office
+       All colours, fonts, and spacing via DS tokens.
+       ============================================================ */
+
+    *, *::before, *::after { box-sizing: border-box; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ---- Shared layout wrapper ---- */
+    .wrap {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-10);
+    }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    .nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-height: 80px;
+      padding: var(--space-7) var(--space-10);
+    }
+
+    .nav__logo {
+      display: block;
+      width: 130px;
+      height: auto;
+    }
+
+    .nav__links {
+      list-style: none;
+      display: flex;
+      gap: var(--space-8);
+    }
+
+    .nav__links a {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+      transition: color 0.2s ease;
+    }
+
+    .nav__links a:hover { color: #fff; }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 680px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: var(--space-20);
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 65% 35%,
+          hsl(233 60% 20%) 0%,
+          hsl(233 100% 13%) 55%,
+          hsl(233 100% 8%) 100%);
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://picsum.photos/seed/gcs-swiss-alps-estate/1600/900');
+      background-size: cover;
+      background-position: center 40%;
+      opacity: 0.14;
+      pointer-events: none;
+    }
+
+    .hero__content {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: flex-end;
+      gap: var(--space-10);
+    }
+
+    .hero__left { max-width: 680px; }
+
+    .hero__label {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: var(--space-6);
+    }
+
+    .hero__h1 {
+      font-family: var(--font-serif);
+      font-size: 52px;
+      line-height: 1.1;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: var(--space-10);
+    }
+
+    .hero__cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 16px 28px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: var(--weight-bold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .hero__cta:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .hero__location {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      padding-bottom: 4px;
+    }
+
+    /* ============================================================
+       INTRO
+       ============================================================ */
+    .intro {
+      padding: var(--space-24) 0;
+      background: var(--background);
+      border-top: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
+    }
+
+    .intro__grid {
+      display: grid;
+      grid-template-columns: 44% 56%;
+      gap: var(--space-16);
+      align-items: start;
+    }
+
+    .intro__copy p {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      line-height: 1.65;
+      font-weight: 400;
+      color: hsl(233 60% 20%);
+      margin-bottom: var(--space-6);
+    }
+
+    .intro__copy p:last-child { margin-bottom: 0; }
+
+    .intro__image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ============================================================
+       APPROACH
+       ============================================================ */
+    .approach {
+      padding: var(--space-24) 0;
+      background: hsl(220 25% 98%);
+      border-top: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
+    }
+
+    .approach__grid {
+      display: grid;
+      grid-template-columns: 54% 46%;
+      gap: var(--space-16);
+      align-items: center;
+    }
+
+    .approach__body h2 {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      line-height: 1.2;
+      font-weight: 400;
+      color: var(--primary);
+      margin-bottom: var(--space-8);
+      letter-spacing: -0.01em;
+    }
+
+    .approach__body p {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: var(--weight-medium);
+      color: hsl(221 15% 40%);
+      margin-bottom: var(--space-5);
+    }
+
+    .approach__body p:last-child { margin-bottom: 0; }
+
+    .approach__image {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      opacity: 0.88;
+    }
+
+    /* ============================================================
+       SERVICES
+       ============================================================ */
+    .services {
+      padding: var(--space-24) 0;
+      background: hsl(40 20% 97%);
+      border-top: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
+    }
+
+    .services__header {
+      margin-bottom: var(--space-10);
+    }
+
+    .services__kicker {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: hsl(221 13% 55%);
+      margin-bottom: var(--space-3);
+    }
+
+    .services__title {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      line-height: 1.2;
+      font-weight: 400;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 48% 52%;
+      align-items: baseline;
+      padding: var(--space-7) 0;
+      border-top: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+      gap: var(--space-8);
+    }
+
+    .service-row:last-child {
+      border-bottom: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+    }
+
+    .service-row__number {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 400;
+      color: hsl(221 13% 65%);
+      padding-top: 2px;
+    }
+
+    .service-row__content h3 {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: var(--weight-semibold);
+      color: var(--primary);
+      margin-bottom: var(--space-2);
+      letter-spacing: -0.01em;
+    }
+
+    .service-row__content p {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.7;
+      font-weight: var(--weight-medium);
+      color: hsl(221 13% 46%);
+    }
+
+    /* ============================================================
+       LEGACY
+       ============================================================ */
+    .legacy {
+      padding: var(--space-32) 0;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 50%,
+          hsl(233 70% 20%) 0%,
+          hsl(233 100% 11%) 100%);
+    }
+
+    .legacy__inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 var(--space-10);
+    }
+
+    .legacy__h2 {
+      font-family: var(--font-serif);
+      font-size: 40px;
+      line-height: 1.25;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: -0.01em;
+    }
+
+    /* ============================================================
+       RELATIONSHIP
+       ============================================================ */
+    .relationship {
+      padding: var(--space-24) 0;
+      background:
+        radial-gradient(ellipse at 25% 50%,
+          hsl(233 70% 18%) 0%,
+          hsl(233 100% 10%) 100%);
+    }
+
+    .relationship__grid {
+      display: grid;
+      grid-template-columns: 52% 48%;
+      gap: var(--space-16);
+      align-items: start;
+    }
+
+    .relationship__copy h2 {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      line-height: 1.2;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: var(--space-8);
+      letter-spacing: -0.01em;
+    }
+
+    .relationship__copy p {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: var(--weight-medium);
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: var(--space-5);
+    }
+
+    .relationship__note {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.82);
+      margin-top: var(--space-6);
+      margin-bottom: 0;
+    }
+
+    /* Journey timeline */
+    .journey { padding-top: var(--space-2); }
+
+    .journey__step {
+      display: flex;
+      gap: var(--space-5);
+      align-items: flex-start;
+    }
+
+    .journey__connector {
+      margin-left: 8px;
+      width: 1px;
+      height: var(--space-7);
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .journey__num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.3);
+      width: 18px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .journey__label {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: var(--space-1);
+    }
+
+    .journey__desc {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.65;
+      font-weight: var(--weight-regular);
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* ============================================================
+       CONTACT
+       ============================================================ */
+    .contact {
+      padding: var(--space-24) 0;
+      background: var(--background);
+      border-top: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
+      text-align: center;
+    }
+
+    .contact__inner {
+      max-width: 580px;
+      margin: 0 auto;
+      padding: 0 var(--space-10);
+    }
+
+    .contact__copy {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: var(--weight-medium);
+      color: hsl(221 13% 44%);
+      margin-bottom: var(--space-8);
+    }
+
+    .contact__cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--primary);
+      padding: 16px 28px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: var(--weight-bold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .contact__cta:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      padding: var(--space-10) 0;
+      background: var(--primary);
+    }
+
+    .footer__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__brand {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .footer__brand-label {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .footer__logo {
+      width: 140px;
+      height: auto;
+      display: block;
+      opacity: 0.8;
+    }
+
+    .footer__contact {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.9;
+      font-weight: var(--weight-medium);
+      color: rgba(255, 255, 255, 0.5);
+      text-align: right;
+    }
+
+    .footer__contact a {
+      color: rgba(255, 255, 255, 0.65);
+      transition: color 0.2s ease;
+    }
+
+    .footer__contact a:hover { color: #fff; }
+
+    /* ============================================================
+       RESPONSIVE — Mobile collapse
+       ============================================================ */
+    @media (max-width: 768px) {
+      .nav { padding: var(--space-5) var(--space-5); }
+      .nav__links { display: none; }
+
+      .hero { min-height: 580px; padding-bottom: var(--space-12); }
+      .hero__h1 { font-size: 36px; }
+      .hero__content { grid-template-columns: 1fr; }
+      .hero__location { display: none; }
+
+      .intro__grid,
+      .approach__grid,
+      .relationship__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+      }
+
+      .intro__copy p { font-size: 17px; }
+      .intro__image { aspect-ratio: 16 / 9; }
+      .approach__image { aspect-ratio: 16 / 9; }
+
+      .approach__body h2,
+      .services__title,
+      .relationship__copy h2 { font-size: 28px; }
+
+      .legacy__h2 { font-size: 28px; }
+
+      .service-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+      }
+
+      .footer__inner {
+        flex-direction: column;
+        gap: var(--space-6);
+        text-align: center;
+      }
+
+      .footer__contact { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===========================
+       NAVIGATION
+  ============================ -->
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#" aria-label="GCS Family Office Services home">
+        <img class="nav__logo" src="../assets/logos/GCS-Secondary-White.svg" alt="Global Citizen Solutions">
+      </a>
+      <ul class="nav__links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===========================
+       HERO
+  ============================ -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero__bg" role="presentation" aria-hidden="true"></div>
+    <div class="hero__content wrap">
+      <div class="hero__left">
+        <p class="hero__label">GCS Family Office Services &nbsp;·&nbsp; Zug</p>
+        <h1 class="hero__h1">For some families, citizenship was only the beginning of the conversation.</h1>
+        <a class="hero__cta" href="#contact">Request a conversation</a>
+      </div>
+      <div class="hero__right" aria-hidden="true">
+        <span class="hero__location">Switzerland &nbsp;|&nbsp; Global</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       INTRO
+  ============================ -->
+  <section class="intro" id="approach" aria-labelledby="intro-heading">
+    <div class="intro__grid wrap">
+      <div class="intro__copy">
+        <p>Over the years, we have worked closely with a small number of families for whom a single mandate - however well executed - was never going to be enough.</p>
+        <p>Their affairs span jurisdictions. Their decisions span generations. And the questions they bring us have a way of leading, naturally, to others - about structure, about legacy, about what comes next.</p>
+        <p>For those families, this is where the conversation continues.</p>
+      </div>
+      <img
+        class="intro__image"
+        src="https://picsum.photos/seed/gcs-family-estate-manor/800/600"
+        alt="A private estate in the Swiss countryside"
+        loading="lazy"
+      >
+    </div>
+  </section>
+
+  <!-- ===========================
+       APPROACH
+  ============================ -->
+  <section class="approach" aria-labelledby="approach-heading">
+    <div class="approach__grid wrap">
+      <div class="approach__body">
+        <h2 id="approach-heading">The right introduction, at the right moment.</h2>
+        <p>The families we work with rarely lack for counsel. They have wealth managers, lawyers, tax advisors - often excellent ones, built up over years. What they sometimes lack is coherence. Someone who works alongside all of them, holds the full picture, and ensures that the architecture of their affairs is working as a whole. That is the role we play.</p>
+        <p>Through long experience with internationally mobile families, we have built a network of specialists we know personally and trust completely - across wealth management, legal advisory, succession planning, real estate, and private life.</p>
+        <p>When we make an introduction, we make it because we know both parties well enough to be certain it is worth making. Our reputation travels with every referral. That is not something we take lightly.</p>
+      </div>
+      <img
+        class="approach__image"
+        src="https://picsum.photos/seed/gcs-advisory-meeting-boardroom/700/700"
+        alt="Private advisory meeting"
+        loading="lazy"
+      >
+    </div>
+  </section>
+
+  <!-- ===========================
+       SERVICES
+  ============================ -->
+  <section class="services" id="services" aria-labelledby="services-heading">
+    <div class="wrap">
+      <div class="services__header">
+        <p class="services__kicker">Areas of Counsel</p>
+        <h2 class="services__title" id="services-heading">Five disciplines. One point of contact.</h2>
+      </div>
+
+      <div class="services__list" role="list">
+
+        <div class="service-row" role="listitem">
+          <span class="service-row__number">01</span>
+          <div class="service-row__content">
+            <h3>Wealth structuring and management</h3>
+            <p>Long-horizon portfolio management and asset structuring for families with interests across multiple jurisdictions and asset classes.</p>
+          </div>
+        </div>
+
+        <div class="service-row" role="listitem">
+          <span class="service-row__number">02</span>
+          <div class="service-row__content">
+            <h3>Legal and private advisory</h3>
+            <p>Counsel across immigration, cross-border succession, sensitive family matters, and private litigation - handled with the confidentiality these situations demand.</p>
+          </div>
+        </div>
+
+        <div class="service-row" role="listitem">
+          <span class="service-row__number">03</span>
+          <div class="service-row__content">
+            <h3>Legacy and estate planning</h3>
+            <p>The structures, governance frameworks, and advisory relationships that allow wealth to transfer across generations - intact, and according to your intentions.</p>
+          </div>
+        </div>
+
+        <div class="service-row" role="listitem">
+          <span class="service-row__number">04</span>
+          <div class="service-row__content">
+            <h3>International real estate</h3>
+            <p>Acquisition strategy, jurisdictional structuring, and private asset management across the world's most significant property markets.</p>
+          </div>
+        </div>
+
+        <div class="service-row" role="listitem">
+          <span class="service-row__number">05</span>
+          <div class="service-row__content">
+            <h3>Private life services</h3>
+            <p>Through our lifestyle partnership, access to advisory and concierge services spanning healthcare, international education, fine art, and the broader fabric of private life.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       LEGACY
+  ============================ -->
+  <section class="legacy" aria-label="Legacy statement">
+    <div class="legacy__inner">
+      <h2 class="legacy__h2">Some decisions shape a year. Others shape generations.</h2>
+    </div>
+  </section>
+
+  <!-- ===========================
+       RELATIONSHIP
+  ============================ -->
+  <section class="relationship" aria-labelledby="relationship-heading">
+    <div class="relationship__grid wrap">
+      <div class="relationship__copy">
+        <h2 id="relationship-heading">A relationship built over time.</h2>
+        <p>GCS Family Office Services is coordinated from our Zug office and extended to a small number of families. Engagement is tailored to the depth of relationship - from curated access to our specialist network, through to a fully managed advisory relationship with a named senior point of contact across every domain.</p>
+        <p class="relationship__note">This is not a service that is applied for. It is one that is offered.</p>
+      </div>
+
+      <div class="journey" aria-label="Engagement journey">
+
+        <div class="journey__step">
+          <span class="journey__num" aria-hidden="true">01</span>
+          <div>
+            <div class="journey__label">Curated Access</div>
+            <div class="journey__desc">Entry to a trusted network of specialists, curated over decades of work with internationally mobile families.</div>
+          </div>
+        </div>
+        <div class="journey__connector" aria-hidden="true"></div>
+
+        <div class="journey__step">
+          <span class="journey__num" aria-hidden="true">02</span>
+          <div>
+            <div class="journey__label">Strategic Introductions</div>
+            <div class="journey__desc">Targeted connections made with full knowledge of both parties, where our reputation travels with each referral.</div>
+          </div>
+        </div>
+        <div class="journey__connector" aria-hidden="true"></div>
+
+        <div class="journey__step">
+          <span class="journey__num" aria-hidden="true">03</span>
+          <div>
+            <div class="journey__label">Private Advisory</div>
+            <div class="journey__desc">Ongoing counsel across the full architecture of a family's affairs - structured, coherent, and held in complete confidence.</div>
+          </div>
+        </div>
+        <div class="journey__connector" aria-hidden="true"></div>
+
+        <div class="journey__step">
+          <span class="journey__num" aria-hidden="true">04</span>
+          <div>
+            <div class="journey__label">Family Office Relationship</div>
+            <div class="journey__desc">A fully managed relationship with a named senior point of contact across every domain of private and financial life.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       CONTACT
+  ============================ -->
+  <section class="contact" id="contact" aria-labelledby="contact-heading">
+    <div class="contact__inner">
+      <p class="contact__copy">If you are an existing GCS client, speak with your relationship manager. If you have been referred to this page, we would welcome a private conversation.</p>
+      <a class="contact__cta" href="mailto:familyoffice@globalcitizensolutions.com">Request a private conversation</a>
+    </div>
+  </section>
+
+  <!-- ===========================
+       FOOTER
+  ============================ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="footer__inner wrap">
+      <div class="footer__brand">
+        <span class="footer__brand-label">GCS Family Office Services</span>
+        <img
+          class="footer__logo"
+          src="../assets/logos/GCS-Secondary-White.svg"
+          alt="Global Citizen Solutions"
+        >
+      </div>
+      <address class="footer__contact" style="font-style: normal;">
+        <div>Zug, Switzerland</div>
+        <div>Head of Family Office Services</div>
+        <div>
+          <a href="mailto:familyoffice@globalcitizensolutions.com">
+            familyoffice@globalcitizensolutions.com
+          </a>
+        </div>
+      </address>
+    </div>
+  </footer>
+
+</body>
+</html>
